@@ -18,5 +18,9 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>aaaaaaa</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>bbbbbb</string>
 </dict>
 </plist>
