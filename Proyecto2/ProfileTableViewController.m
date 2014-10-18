@@ -41,9 +41,15 @@
 
     [self setCurrentUser];
     
-    [self getConquistasToCurrentUser];
+    
 
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"se ejecuta cada rato");
+    
+    [self getConquistasToCurrentUser];
 }
 
 

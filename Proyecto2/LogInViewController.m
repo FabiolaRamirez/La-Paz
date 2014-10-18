@@ -9,9 +9,13 @@
 #import "LogInViewController.h"
 #import <Parse/Parse.h>
 #import "JGProgressHUD.h"
+#import "JGProgressHUDErrorIndicatorView.h"
+#import "JGProgressHUDSuccessIndicatorView.h"
 
 //#import <ParseFacebookUtils/ParseFacebookUtils.h>
-@interface LogInViewController () <UITextFieldDelegate>
+@interface LogInViewController () <UITextFieldDelegate> {
+    JGProgressHUD *HUD;
+}
 
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -44,6 +48,11 @@ UIGestureRecognizer *tapper;
     
     //si es usuario
     
+    
+    
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = @"Ingresando...";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,9 +83,6 @@ UIGestureRecognizer *tapper;
     
     if (usename.length>0&&password.length>0) {
         
-        
-        JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-        HUD.textLabel.text = @"Ingresando...";
         [HUD showInView:self.view];
         
         
@@ -86,70 +92,79 @@ UIGestureRecognizer *tapper;
         [query whereKey:@"email" equalTo:usename];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
             
-            
-            
-            
-            if (objects.count > 0) {
+            if (!error) {
                 
-                PFObject *object = [objects objectAtIndex:0];
-                NSString *username = [object objectForKey:@"username"];
-                [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser* user, NSError* error){
+                if (objects.count > 0) {
                     
+                    PFObject *object = [objects objectAtIndex:0];
+                    NSString *username = [object objectForKey:@"username"];
+                    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser* user, NSError* error){
+                        
+                        
+                        [HUD dismissAnimated:YES];
+                        
+                        if (user) {
+                            // Do stuff after successful login.
+                            NSLog(@"login ok!");
+                            
+                            // nos lleva a la vista modal
+                            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootTabBarController"];
+                            
+                            // si queremos que tenga naigation bar
+                            // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                            
+                            [self presentViewController:viewController animated:YES completion:nil];
+                            
+                            
+                        } else {
+                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Correo electronico o contraseña incorrecto" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+                            [alert show];
+                        }
+                    }];
                     
-                    [HUD dismissAnimated:YES];
+                }else{
+                    //por else verifica por nombre de usuario
+                    [PFUser logInWithUsernameInBackground: usename password:password block:^(PFUser* user, NSError* error){
+                        
+                        [HUD dismissAnimated:YES];
+                        
+                        
+                        if (user) {
+                            // Do stuff after successful login.
+                            NSLog(@"login ok!");
+                            
+                            
+                            // modal
+                            
+                            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootTabBarController"];
+                            
+                            // si queremos que tenga naigation bar
+                            // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+                            
+                            [self presentViewController:viewController animated:YES completion:nil];
+                            
+                            
+                        } else {
+                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Correo electronico o contraseña incorrecto" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+                            [alert show];
+                        }
+                        
+                    }];
                     
-                    if (user) {
-                        // Do stuff after successful login.
-                        NSLog(@"login ok!");
-                        
-                        // nos lleva a la vista modal
-                        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootTabBarController"];
-                        
-                        // si queremos que tenga naigation bar
-                        // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-                        
-                        [self presentViewController:viewController animated:YES completion:nil];
-                        
-                        
-                    } else {
-                        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Correo electronico o contraseña incorrecto" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-                        [alert show];
-                    }
-                }];
+                }
                 
-            }else{
-                //por else verifica por nombre de usuario
-                [PFUser logInWithUsernameInBackground: usename password:password block:^(PFUser* user, NSError* error){
-                    
-                    [HUD dismissAnimated:YES];
-                    
-                    
-                    if (user) {
-                        // Do stuff after successful login.
-                        NSLog(@"login ok!");
-                        
-                        
-                        // modal
-                        
-                        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rootTabBarController"];
-                        
-                        // si queremos que tenga naigation bar
-                        // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-                        
-                        [self presentViewController:viewController animated:YES completion:nil];
-                        
-                        
-                    } else {
-                        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Correo electronico o contraseña incorrecto" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-                        [alert show];
-                    }
-
-                }];
+            } else {
+                NSLog(@"NO HAY IRNET");
+                [HUD dismissAnimated:YES];
                 
+                [self showErrorHUD];
             }
             
-            
         }];
+        
+        
+        
+        
     }
     else{
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Complete los espacios vacios" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
@@ -218,16 +233,16 @@ UIGestureRecognizer *tapper;
     [self.usernameTextField setDelegate:self];
     [self.usernameTextField setReturnKeyType:UIReturnKeyDone];
     [self.usernameTextField addTarget:self
-                           action:@selector(login:)
-                 forControlEvents:UIControlEventEditingDidEndOnExit];
+                               action:@selector(login:)
+                     forControlEvents:UIControlEventEditingDidEndOnExit];
     [super viewDidLoad];
 }
 -(void)ActionButtonKeyboardPasswordTextField{
     [self.passwordTextField setDelegate:self];
     [self.passwordTextField setReturnKeyType:UIReturnKeyDone];
     [self.passwordTextField addTarget:self
-                            action:@selector(login:)
-                  forControlEvents:UIControlEventEditingDidEndOnExit];
+                               action:@selector(login:)
+                     forControlEvents:UIControlEventEditingDidEndOnExit];
     [super viewDidLoad];
 }
 //********
@@ -242,5 +257,38 @@ UIGestureRecognizer *tapper;
 {
     [self.view endEditing:YES];
 }
+
+
+
+
+
+- (void)showErrorHUD {
+    JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+
+    HUD2.textLabel.text = @"Error!";
+    HUD2.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+    
+    HUD2.square = YES;
+    
+    [HUD2 showInView:self.navigationController.view];
+
+    [HUD2 dismissAfterDelay:2.0];
+}
+
+
+
+- (void)showSuccessHUD {
+JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    
+    HUD.textLabel.text = @"Success!";
+    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+    
+    HUD.square = YES;
+    
+    [HUD showInView:self.navigationController.view];
+    
+    [HUD dismissAfterDelay:3.0];
+}
+
 
 @end

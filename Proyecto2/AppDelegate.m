@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "UIColor+LaPaz.h"
 //#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @implementation AppDelegate
@@ -23,6 +24,14 @@
     
     //facebook/parse
     [PFFacebookUtils initializeFacebook];
+    
+    //PERSONALIZAR NAVIGATIONS
+    [[UINavigationBar appearance] setBarTintColor:[UIColor primaryColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    [[UITabBar appearance] setTintColor:[UIColor primaryColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor primaryColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }

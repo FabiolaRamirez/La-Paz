@@ -12,6 +12,8 @@
 		20218D1019B52D9E002E111E /* InformationPlace2TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20218D0F19B52D9E002E111E /* InformationPlace2TableViewController.m */; };
 		2032586B19D5BDCB00DC1CB9 /* ConquerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2032586A19D5BDCB00DC1CB9 /* ConquerCell.xib */; };
 		203490E21915A8200028ABC3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203490E11915A8200028ABC3 /* MapKit.framework */; };
+		2038A9E719F31477008FB445 /* UIColor+LaPaz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9E619F31477008FB445 /* UIColor+LaPaz.m */; };
+		2038A9EC19F3240D008FB445 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EB19F3240D008FB445 /* Util.m */; };
 		203E43B019E86EC5000054F9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203E43AF19E86EC5000054F9 /* MapViewController.m */; };
 		203EA4D319B8AC1A00745189 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */; };
 		203F263B19DB3A5100D1D01A /* HerePlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */; };
@@ -112,6 +114,10 @@
 		20218D0F19B52D9E002E111E /* InformationPlace2TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationPlace2TableViewController.m; sourceTree = "<group>"; };
 		2032586A19D5BDCB00DC1CB9 /* ConquerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConquerCell.xib; sourceTree = "<group>"; };
 		203490E11915A8200028ABC3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2038A9E519F31477008FB445 /* UIColor+LaPaz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LaPaz.h"; sourceTree = "<group>"; };
+		2038A9E619F31477008FB445 /* UIColor+LaPaz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LaPaz.m"; sourceTree = "<group>"; };
+		2038A9EA19F3240D008FB445 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		2038A9EB19F3240D008FB445 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		203E43AE19E86EC5000054F9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		203E43AF19E86EC5000054F9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../../Downloads/parse-library-1-2/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
@@ -281,6 +287,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2038A9E919F323DE008FB445 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2038A9E519F31477008FB445 /* UIColor+LaPaz.h */,
+				2038A9E619F31477008FB445 /* UIColor+LaPaz.m */,
+				2038A9EA19F3240D008FB445 /* Util.h */,
+				2038A9EB19F3240D008FB445 /* Util.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		204B6C5F19A2E1F0009CDC55 /* Buscar */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +507,7 @@
 		20EAD6A3190EC3B900AD9126 /* Proyecto2 */ = {
 			isa = PBXGroup;
 			children = (
+				2038A9E919F323DE008FB445 /* Util */,
 				20652ABE19F1E5B80042BD42 /* JGProgressHUD */,
 				20A4C5D919B659D100479852 /* LogIn */,
 				204B6C5F19A2E1F0009CDC55 /* Buscar */,
@@ -674,8 +692,10 @@
 				20C7952219B3D6E800A1335E /* DescripcionCell.m in Sources */,
 				20AC69981994557F0008E4B3 /* KIImagePager.m in Sources */,
 				20C7952819B3D73900A1335E /* HoraCell.m in Sources */,
+				2038A9E719F31477008FB445 /* UIColor+LaPaz.m in Sources */,
 				20426ED519D366AB000F2B14 /* MedalCell.m in Sources */,
 				203E43B019E86EC5000054F9 /* MapViewController.m in Sources */,
+				2038A9EC19F3240D008FB445 /* Util.m in Sources */,
 				20EAD6AA190EC3B900AD9126 /* main.m in Sources */,
 				209F644219F1AC2100F38F03 /* PeopleTableViewController.m in Sources */,
 				2062DF06198719EC0035F5A0 /* PlacesTableViewController.m in Sources */,
