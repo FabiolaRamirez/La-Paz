@@ -10,6 +10,7 @@
 
 @interface MedalTableViewController (){
     NSArray *medallsArray;
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -30,27 +31,15 @@
     [super viewDidLoad];
     
     medallsArray = [[NSMutableArray alloc] init];
-    //Query
-    PFQuery *query = [PFQuery queryWithClassName:@"Medalla"];
-    //[query orderByAscending:@"name"];
+   
+    [self getPlacesFromParse];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-            
-            medallsArray = objects;
-            //actualizar tabla con datos
-            [self.tableView reloadData];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self configRefreshControl];
     
     }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -149,8 +138,47 @@
 }
 */
 
+-(void) getPlacesFromParse{
+    //Query
+    PFQuery *query = [PFQuery queryWithClassName:@"Medalla"];
+    //[query orderByAscending:@"name"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [refreshControl endRefreshing];
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
+            
+            medallsArray = objects;
+            //actualizar tabla con datos
+            [self.tableView reloadData];
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        
+    }];
+}
+
+
 - (IBAction)goProfile:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) configRefreshControl{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateData:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    [self.tableView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+}
+
+- (void) updateData: (id) sender {
+    NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
+    
+    [self getPlacesFromParse];
 }
 
 

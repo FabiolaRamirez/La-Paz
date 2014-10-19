@@ -263,7 +263,7 @@ UIGestureRecognizer *tapper;
 
 
 - (void)showErrorHUD {
-    JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
 
     HUD2.textLabel.text = @"Error!";
     HUD2.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
@@ -278,7 +278,7 @@ UIGestureRecognizer *tapper;
 
 
 - (void)showSuccessHUD {
-JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
     
     HUD.textLabel.text = @"Success!";
     HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];

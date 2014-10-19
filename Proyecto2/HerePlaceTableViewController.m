@@ -73,7 +73,7 @@
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
     UILabel * distanceLabel = (UILabel *)[cell viewWithTag:4];
     UILabel * contador = (UILabel *)[cell viewWithTag:5];
-
+     UILabel * kmLabel = (UILabel *)[cell viewWithTag:6];
     
     PFObject *placeDetail=[placesArray objectAtIndex:indexPath.row];
     
@@ -136,8 +136,17 @@
             
             NSLog(@"distancia %f km", distancia);
             
-            distanceLabel.text = [Util number2Decimals:distancia];
-            //distanceLabel.text=[NSString stringWithFormat:@"%g", distancia];
+            if (distancia<1) {
+                kmLabel.text=@"m";
+                double ditanciaMetros=distancia*1000;
+                distancia=ditanciaMetros;
+                distanceLabel.text = [Util number2Decimals:distancia];
+            }
+            else{
+                //muestra distancia mayor a 1km
+                //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
+                distanceLabel.text = [Util number2Decimals:distancia];
+            }
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");

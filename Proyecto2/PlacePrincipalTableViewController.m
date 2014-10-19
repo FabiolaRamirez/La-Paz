@@ -11,11 +11,15 @@
 #import "InformationPlaceTableViewController.h"
 #import "QualifyViewController.h"
 #import <MapKit/MapKit.h>
+#import "JGProgressHUD.h"
+#import "JGProgressHUDSuccessIndicatorView.h"
 @interface PlacePrincipalTableViewController ()
 {
     NSArray * objectArray;
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
+    JGProgressHUD *HUD;
+
 }
 
 
@@ -41,6 +45,8 @@
      codigosLugaresArray = [[NSMutableArray alloc] init];
       placesArray = [[NSMutableArray alloc] init];
     
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = @"Conquista exitosa!";
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,6 +108,7 @@
         
         UILabel * directionLabel = (UILabel *)[cell viewWithTag:4];
         UILabel * countKmLabel = (UILabel *)[cell viewWithTag:5];
+        UILabel * kmLabel = (UILabel *)[cell viewWithTag:8];
         MKMapView * mapView = (MKMapView *)[cell viewWithTag:3];
         
         directionLabel.text=self.lugar[@"address"];
@@ -153,16 +160,19 @@
                 
                 // codigo para calcular la distancia
                 
-                double distancia = [userGeoPoint distanceInKilometersTo:geoPoint];
+                double distancia = [geoPoint distanceInKilometersTo:userGeoPoint];
                 
                 NSLog(@"distancia %f km", distancia);
                 if (distancia<1) {
+                    kmLabel.text=@"m";
                     double ditanciaMetros=distancia*1000;
                     distancia=ditanciaMetros;
+                    countKmLabel.text = [Util number2Decimals:distancia];
                 }
                 else{
                     //muestra distancia mayor a 1km
-                   countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
+                   //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
+                    countKmLabel.text = [Util number2Decimals:distancia];
                 }
                 
             } else {

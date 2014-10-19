@@ -44,7 +44,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self configRefreshControl];
-    NSLog(@"entra __________***********");
     
 }
 
@@ -110,6 +109,7 @@
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
     UILabel * distanceLabel = (UILabel *)[cell viewWithTag:4];
     UILabel * contador = (UILabel *)[cell viewWithTag:5];
+    UILabel * kmLabel = (UILabel *)[cell viewWithTag:6];
     
     PFObject *placeDetail=[places objectAtIndex:indexPath.row];
     
@@ -172,20 +172,22 @@
             
             NSLog(@"distancia %f km", distancia);
             
-            //distanceLabel.text=[NSString stringWithFormat:@"%g", distancia];
-            distanceLabel.text = [Util number2Decimals:distancia];
+            if (distancia<1) {
+                kmLabel.text=@"m";
+                double ditanciaMetros=distancia*1000;
+                distancia=ditanciaMetros;
+                distanceLabel.text = [Util number2Decimals:distancia];
+            }
+            else{
+                //muestra distancia mayor a 1km
+                //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
+                distanceLabel.text = [Util number2Decimals:distancia];
+            }
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");
         }
     }];
-    
-    //para obtener el total de conquistas de cada lugar a nivel global
-    
-    
-    
-    //[fotoImageView setImageWithURL:[NSURL URLWithString:placeDetail[@"urlImage"]]
-    //             placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     return cell;
 }
@@ -263,33 +265,6 @@
  }
  */
 
-- (NSInteger)contadorLugaresConquistados
-{
-    NSString *cate = self.lugar.objectId;
-    NSLog(@".......:::%@",cate);
-    
-    //Query
-    PFQuery *query = [PFQuery queryWithClassName:@"Categoria"];
-    [query whereKey:@"objectId" equalTo:cate];
-    
-    //[query orderByAscending:@"Tipo"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-            places_Conquitados=objects;
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
-    
-    NSLog(@"mmmmmmmmmmmm: %lu",(unsigned long)[places_Conquitados count]);
-    return [places_Conquitados count];
-}
 
 -(void) configRefreshControl{
     refreshControl = [[UIRefreshControl alloc] init];

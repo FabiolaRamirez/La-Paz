@@ -27,6 +27,7 @@
     
     //medallas
     [self getMedallasToCurrentUser];
+    
 }
 
 - (void)didReceiveMemoryWarning {
