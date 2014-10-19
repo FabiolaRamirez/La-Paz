@@ -129,17 +129,15 @@
         
     }];
     
-    //para el contador de lugares conquistados
-    
+    //para el contador de lugares conquistados a nivel general
+    //NO DISPONIBLE ESTA MAL
+    /*
     NSString *cate = placeDetail.objectId;
     NSLog(@".......:::%@",cate);
     
     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"Conquista"];
     [query whereKey:@"codigo_place" equalTo:cate];
-    
-    //[query orderByAscending:@"Tipo"];
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -153,7 +151,7 @@
         }
         
     }];
-    
+    */
     
     // obtmer la bucacion del lugar
     PFGeoPoint * placeGeoPoint = placeDetail[@"coordinate"];

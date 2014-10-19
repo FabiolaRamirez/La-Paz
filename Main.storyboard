@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VkQ-kZ-0kb">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -361,10 +360,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EAx-A5-phW" id="u7p-45-m2z">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Wt2-4R-7uL">
-                                            <rect key="frame" x="253" y="4" width="378" height="123"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nombre medalla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aK6-xj-rwq">
                                             <rect key="frame" x="8" y="6" width="232" height="53"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -372,6 +367,10 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Wt2-4R-7uL">
+                                            <rect key="frame" x="248" y="6" width="53" height="47"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -423,7 +422,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mmq-0a-S6K">
-                                            <rect key="frame" x="232" y="4" width="80" height="124"/>
+                                            <rect key="frame" x="248" y="13" width="44" height="52"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
@@ -789,10 +788,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RGD-oS-OEV">
-                                <rect key="frame" x="40" y="513" width="231" height="30"/>
+                                <rect key="frame" x="45" y="513" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
                                 <state key="normal" title="Regíster">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="fPR-HE-rT0" kind="push" id="g4b-U5-du1"/>
@@ -801,41 +802,52 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AWM-Bd-jrO">
                                 <rect key="frame" x="45" y="475" width="231" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
                                 <state key="normal" title="Log In with Facebook">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="loginWithFacebook:" destination="vZY-lD-x17" eventType="touchUpInside" id="74M-4x-8Ri"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="epV-FV-LcT">
-                                <rect key="frame" x="83" y="323" width="149" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log In">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="login:" destination="vZY-lD-x17" eventType="touchUpInside" id="crm-3d-jet"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="fany@gmail.com" borderStyle="roundedRect" placeholder="Correo electrónico o nombre de usuario" minimumFontSize="17" id="di0-VX-QJF">
-                                <rect key="frame" x="25" y="242" width="278" height="30"/>
+                                <rect key="frame" x="23" y="279" width="275" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Contraseña" minimumFontSize="17" id="4ZP-Xf-saf">
-                                <rect key="frame" x="25" y="285" width="275" height="30"/>
+                                <rect key="frame" x="23" y="318" width="275" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="epV-FV-LcT">
+                                <rect key="frame" x="75" y="360" width="149" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="17"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="vZY-lD-x17" eventType="touchUpInside" id="crm-3d-jet"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" id="L2n-6Z-lTg">
+                                <rect key="frame" x="123" y="135" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="PGQ-kn-bW0"/>
                     <connections>
+                        <outlet property="fontStoryboardView" destination="ix7-B2-l9E" id="Cyq-f8-L6u"/>
+                        <outlet property="logInButton" destination="epV-FV-LcT" id="pDB-C1-HPp"/>
                         <outlet property="passwordTextField" destination="4ZP-Xf-saf" id="8TZ-he-DGF"/>
                         <outlet property="usernameTextField" destination="di0-VX-QJF" id="4El-IM-JMu"/>
                     </connections>
@@ -1012,7 +1024,7 @@
             </objects>
             <point key="canvasLocation" x="3145" y="507"/>
         </scene>
-        <!--Global-->
+        <!--Ranking-->
         <scene sceneID="F35-HN-sSy">
             <objects>
                 <tableViewController id="Dmm-Xf-hvx" customClass="PeopleTableViewController" sceneMemberID="viewController">
@@ -1032,8 +1044,8 @@
                                             <rect key="frame" x="14" y="16" width="51" height="51"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rey de la ciudad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="je6-49-cym">
-                                            <rect key="frame" x="73" y="11" width="193" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="soy un explorador ambicioso" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="je6-49-cym">
+                                            <rect key="frame" x="73" y="11" width="222" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1093,7 +1105,7 @@
                             <outlet property="delegate" destination="Dmm-Xf-hvx" id="6eu-9B-vvT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Global" id="dUO-kK-mEV">
+                    <navigationItem key="navigationItem" title="Ranking" id="dUO-kK-mEV">
                         <barButtonItem key="rightBarButtonItem" image="persona" id="DrL-gM-UAT">
                             <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                             <connections>
@@ -1127,8 +1139,8 @@
                                             <rect key="frame" x="14" y="15" width="52" height="52"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rey de la ciudad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6cH-LG-BIG">
-                                            <rect key="frame" x="87" y="4" width="164" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="soy un explorador ambicioso" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6cH-LG-BIG">
+                                            <rect key="frame" x="87" y="4" width="222" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1195,11 +1207,11 @@
             </objects>
             <point key="canvasLocation" x="2408" y="1210"/>
         </scene>
-        <!--Global-->
+        <!--Personas-->
         <scene sceneID="CBx-23-HQw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dLy-LR-kvY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Global" image="friends" id="mQq-bE-up5">
+                    <tabBarItem key="tabBarItem" title="Personas" image="friends" id="mQq-bE-up5">
                         <inset key="imageInsets" minX="1" minY="1" maxX="1" maxY="1"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1279,7 +1291,7 @@
                                 <rect key="frame" x="18" y="357" width="157" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="No satisfecho" image="perfil">
-                                    <color key="titleShadowColor" patternImage="9AAB6E77-F71F-4304-BE57-66EEF02CD85B" colorSpace="pattern"/>
+                                    <color key="titleShadowColor" patternImage="10378C0F-FC0C-4249-9952-D06568B42308" colorSpace="pattern"/>
                                 </state>
                             </button>
                         </subviews>
@@ -1483,7 +1495,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="9AAB6E77-F71F-4304-BE57-66EEF02CD85B" width="256" height="256">
+        <image name="10378C0F-FC0C-4249-9952-D06568B42308" width="256" height="256">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -5935,6 +5947,7 @@ AAAAAAAEAQAAAAAAAABCAAAAAAAAAAAAAAAAAAQO4w
         <image name="conquistar" width="32" height="32"/>
         <image name="friends" width="32" height="32"/>
         <image name="lista" width="20" height="20"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="medal-32" width="32" height="32"/>
         <image name="perfil" width="32" height="32"/>
         <image name="persona" width="32" height="32"/>

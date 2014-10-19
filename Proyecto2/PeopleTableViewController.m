@@ -21,6 +21,7 @@
     [super viewDidLoad];
     
     personasVector=[[NSMutableArray alloc] init];
+    [self queryGetNumberConquerDescending];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +57,7 @@
     
     PFObject *object = [personasVector objectAtIndex:indexPath.row];
     
-    nameLabel.text = object[@"name"];
+    nameLabel.text = object[@"username"];
     
     //para obtener imagen
     PFFile *imageFile=[object objectForKey:@"imageFile"];
@@ -120,17 +121,26 @@
     // Pass the selected object to the new view controller.
 }
 */
--(void) calculoMayorConquistador{
+-(void) queryGetNumberConquerDescending{
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Conquista"];
-    [query whereKey:@"objectId" equalTo:@"Sean Plott"];
-    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+    //Query
+    PFQuery *query = [PFQuery queryWithClassName:@"User"];
+    //[query orderByDescending:@"contConquistas"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The count request succeeded. Log the count
-            NSLog(@"Sean has played %d games", count);
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
+            
+            personasVector = objects;
+            //actualizar tabla con datos
+            [self.tableView reloadData];
+            
         } else {
-            // The request failed
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
+        
     }];
 }
 

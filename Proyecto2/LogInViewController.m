@@ -11,7 +11,7 @@
 #import "JGProgressHUD.h"
 #import "JGProgressHUDErrorIndicatorView.h"
 #import "JGProgressHUDSuccessIndicatorView.h"
-
+#import "UIColor+LaPaz.h"
 //#import <ParseFacebookUtils/ParseFacebookUtils.h>
 @interface LogInViewController () <UITextFieldDelegate> {
     JGProgressHUD *HUD;
@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (strong, nonatomic) IBOutlet UIButton *logInButton;
+@property (strong, nonatomic) IBOutlet UIView *fontStoryboardView;
 
 @end
 
@@ -45,8 +47,10 @@ UIGestureRecognizer *tapper;
     //metodo retornar accion del teclado "aceptar"
     [self ActionButtonKeyboardUserTextField];
     [self ActionButtonKeyboardPasswordTextField];
-    
-    //si es usuario
+    //[_logInButton setBackgroundColor:[UIColor primaryLightColor]];
+    [_fontStoryboardView setBackgroundColor:[UIColor primaryColor]];
+    //ocultar navigation bar
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
     
     
     
@@ -154,7 +158,7 @@ UIGestureRecognizer *tapper;
                 }
                 
             } else {
-                NSLog(@"NO HAY IRNET");
+                NSLog(@"NO HAY INTERNET");
                 [HUD dismissAnimated:YES];
                 
                 [self showErrorHUD];
@@ -179,10 +183,10 @@ UIGestureRecognizer *tapper;
 - (IBAction)loginWithFacebook:(UIButton *)sender {
     
     NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends"];
-    
+    [HUD showInView:self.view];
     // Login PFUser using Facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        
+        [HUD dismissAnimated:YES];
         if (user) {
             
             if (user.isNew) {
@@ -278,7 +282,7 @@ UIGestureRecognizer *tapper;
 
 
 - (void)showSuccessHUD {
-JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
+JGProgressHUD *HUD3 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
     
     HUD.textLabel.text = @"Success!";
     HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];

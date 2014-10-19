@@ -13,13 +13,15 @@
 #import <MapKit/MapKit.h>
 #import "JGProgressHUD.h"
 #import "JGProgressHUDSuccessIndicatorView.h"
+#import "JGProgressHUDErrorIndicatorView.h"
 @interface PlacePrincipalTableViewController ()
 {
     NSArray * objectArray;
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
-    //JGProgressHUD *HUD;
-
+    JGProgressHUD *HUD;
+    JGProgressHUD *HUD2;
+    JGProgressHUD *HUD3;
 }
 
 
@@ -44,10 +46,9 @@
     objectArray=[[NSMutableArray alloc] initWithCapacity:5];
      codigosLugaresArray = [[NSMutableArray alloc] init];
       placesArray = [[NSMutableArray alloc] init];
+
+
     
-    
-    //HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    //HUD.textLabel.text = @"Conquista exitosa!";
 }
 
 - (void)didReceiveMemoryWarning
@@ -335,8 +336,9 @@
                 [self getConquistasToCurrentUser];
                 
             } else {
-                // no se puede conquistar
-                [self showAlertNoCosquistar];
+                // Alerta donde no se puede conquistar porque esta fuera de rango
+                [self showErrorOutHUD];
+            
             }
             
         } else {
@@ -416,11 +418,13 @@
                 }
             }
             if (sw==1) {
-                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Usted ya conquisto este lugar" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-                [alert show];
+                //Alerta donde ya conquisto ese lugar
+                [self showErrorHUD];
+                
             }
             else{
-                [self showAlertCosquistar];
+                //Alerta donde la conquista fue exitosa
+                [self showSuccessHUD];
                 [self saveToParseConquista];
             }
             
@@ -468,16 +472,6 @@
 }
 
 
-
-
-- (void) showAlertNoCosquistar {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Usted no puede conquistar este lugar" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-    [alert show];
-}
-- (void) showAlertCosquistar {
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Su conquista fue exitosa!" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-    [alert show];
-}
 //-----------------------------------------------
 
 -(void) verificarSiExisteMedalla{
@@ -563,6 +557,42 @@
 
 }
 
+- (void)showSuccessHUD {
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
+    
+    HUD.textLabel.text = @"Conquistado";
+    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+    
+    HUD.square = YES;
+    
+    [HUD showInView:self.navigationController.view];
+    
+    [HUD dismissAfterDelay:3.0];
+}
+- (void)showErrorHUD {
+    HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    
+    HUD2.textLabel.text = @"Ya conquiste!";
+    HUD2.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+    
+    HUD2.square = YES;
+    
+    [HUD2 showInView:self.navigationController.view];
+    
+    [HUD2 dismissAfterDelay:2.0];
+}
+- (void)showErrorOutHUD {
+    HUD3 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    
+    HUD3.textLabel.text = @"No esta aqui!";
+    HUD3.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+    
+    HUD3.square = YES;
+    
+    [HUD3 showInView:self.navigationController.view];
+    
+    [HUD3 dismissAfterDelay:2.0];
+}
 
 
 
