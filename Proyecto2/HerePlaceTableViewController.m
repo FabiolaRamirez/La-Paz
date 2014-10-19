@@ -8,9 +8,11 @@
 
 #import "HerePlaceTableViewController.h"
 #import "PlacePrincipalTableViewController.h"
+
+
 @interface HerePlaceTableViewController (){
     NSArray * placesArray;
-    
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -33,7 +35,9 @@
     
     
     [self getPlacesFromParse];
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self configRefreshControl];
     
 }
 
@@ -132,7 +136,8 @@
             
             NSLog(@"distancia %f km", distancia);
             
-            distanceLabel.text=[NSString stringWithFormat:@"%g", distancia];
+            distanceLabel.text = [Util number2Decimals:distancia];
+            //distanceLabel.text=[NSString stringWithFormat:@"%g", distancia];
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");
@@ -227,6 +232,7 @@
 - (void) getPlacesFromParse {
     
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *userGeoPoint, NSError *error) {
+        [refreshControl endRefreshing];
         if (!error) {
             NSLog(@"%f, %f", userGeoPoint.latitude, userGeoPoint.longitude);
             // todo ok
@@ -264,5 +270,21 @@
         }
     }];
 }
+
+-(void) configRefreshControl{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateData:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    [self.tableView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+}
+
+- (void) updateData: (id) sender {
+    NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
+    
+    [self getPlacesFromParse];
+}
+
 
 @end

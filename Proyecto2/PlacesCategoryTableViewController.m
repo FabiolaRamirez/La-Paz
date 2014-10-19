@@ -13,7 +13,8 @@
 @interface PlacesCategoryTableViewController (){
 
     NSArray * categorias;
-   
+    UIRefreshControl *refreshControl;
+
     
 }
 @end
@@ -36,19 +37,30 @@
     
     categorias = [[NSMutableArray alloc] init];
     
+    NSString *nom=self.ObjetoC[@"name"];
+    self.navigationItem.title = nom;
     
+    [self getPlacesFromParse];
+    
+    //inicializando el icono de carga
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self configRefreshControl];
+    NSLog(@"entra __________***********");
+    
+}
+
+-(void) getPlacesFromParse{
+    //Query
     NSString *cate = self.ObjetoC[@"code"];
     NSLog(@".......:::%@",cate);
-    NSString *nom=self.ObjetoC[@"name"];
-    
-    self.navigationItem.title = nom;
-     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"Categoria"];
     [query whereKey:@"code1" equalTo:cate];
-
+    
     //[query orderByAscending:@"Tipo"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [refreshControl endRefreshing];
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
@@ -182,6 +194,19 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 
+-(void) configRefreshControl{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateData:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    [self.tableView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+}
 
+- (void) updateData: (id) sender {
+    NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
+    
+    [self getPlacesFromParse];
+}
 
 @end

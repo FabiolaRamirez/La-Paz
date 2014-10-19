@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "Util.h"
 @interface HerePlaceTableViewController : UITableViewController
 
 @property (nonatomic, strong) PFObject *place;
