@@ -14,6 +14,7 @@
 		203490E21915A8200028ABC3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203490E11915A8200028ABC3 /* MapKit.framework */; };
 		2038A9E719F31477008FB445 /* UIColor+LaPaz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9E619F31477008FB445 /* UIColor+LaPaz.m */; };
 		2038A9EC19F3240D008FB445 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EB19F3240D008FB445 /* Util.m */; };
+		2038A9F019F32DE9008FB445 /* RankingLugaresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */; };
 		203E43B019E86EC5000054F9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203E43AF19E86EC5000054F9 /* MapViewController.m */; };
 		203EA4D319B8AC1A00745189 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */; };
 		203F263B19DB3A5100D1D01A /* HerePlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */; };
@@ -118,6 +119,8 @@
 		2038A9E619F31477008FB445 /* UIColor+LaPaz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LaPaz.m"; sourceTree = "<group>"; };
 		2038A9EA19F3240D008FB445 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		2038A9EB19F3240D008FB445 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		2038A9EE19F32DE9008FB445 /* RankingLugaresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingLugaresTableViewController.h; sourceTree = "<group>"; };
+		2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingLugaresTableViewController.m; sourceTree = "<group>"; };
 		203E43AE19E86EC5000054F9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		203E43AF19E86EC5000054F9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../../Downloads/parse-library-1-2/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
@@ -298,6 +301,14 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		2038A9ED19F32D78008FB445 /* Lugares */ = {
+			isa = PBXGroup;
+			children = (
+				20AC699019944A380008E4B3 /* Place */,
+			);
+			name = Lugares;
+			sourceTree = "<group>";
+		};
 		204B6C5F19A2E1F0009CDC55 /* Buscar */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +379,8 @@
 				20872BB019E49CD500BED415 /* QualifyViewController.m */,
 				203E43AE19E86EC5000054F9 /* MapViewController.h */,
 				203E43AF19E86EC5000054F9 /* MapViewController.m */,
+				2038A9EE19F32DE9008FB445 /* RankingLugaresTableViewController.h */,
+				2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -507,6 +520,7 @@
 		20EAD6A3190EC3B900AD9126 /* Proyecto2 */ = {
 			isa = PBXGroup;
 			children = (
+				2038A9ED19F32D78008FB445 /* Lugares */,
 				2038A9E919F323DE008FB445 /* Util */,
 				20652ABE19F1E5B80042BD42 /* JGProgressHUD */,
 				20A4C5D919B659D100479852 /* LogIn */,
@@ -514,7 +528,6 @@
 				20AC69C0199849860008E4B3 /* User */,
 				20AC699D19945A900008E4B3 /* Cells */,
 				20AC69911994556D0008E4B3 /* Libs */,
-				20AC699019944A380008E4B3 /* Place */,
 				20EAD6AC190EC3B900AD9126 /* AppDelegate.h */,
 				20EAD6AD190EC3B900AD9126 /* AppDelegate.m */,
 				200A4F271960EDDB003700D2 /* VistaPrincipalViewController.h */,
@@ -707,6 +720,7 @@
 				20652ADB19F1E5B80042BD42 /* JGProgressHUDIndicatorView.m in Sources */,
 				20C7952519B3D6FF00A1335E /* DireccionCell.m in Sources */,
 				20426ECE19D36594000F2B14 /* PerfilCell.m in Sources */,
+				2038A9F019F32DE9008FB445 /* RankingLugaresTableViewController.m in Sources */,
 				2089FF9419EF1C73001F3808 /* RewardTableViewController.m in Sources */,
 				20D005E619AEC4FE0028693B /* InformationPlaceTableViewController.m in Sources */,
 				20652ADC19F1E5B80042BD42 /* JGProgressHUDPieIndicatorView.m in Sources */,

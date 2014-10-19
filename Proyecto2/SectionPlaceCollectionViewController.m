@@ -119,6 +119,10 @@
     [self.navigationController pushViewController:tableViewController animated:YES];
 
 }
+- (IBAction)goRanking:(UIBarButtonItem *)sender {
+     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 
 @end
