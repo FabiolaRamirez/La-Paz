@@ -9,6 +9,7 @@
 #import "ProfileTableViewController.h"
 #import "MedalTableViewController.h"
 #import "ConquerCell.h"
+#import "UIColor+LaPaz.h"
 
 @interface ProfileTableViewController () {
     NSMutableArray *codigosLugaresArray;
@@ -96,6 +97,7 @@
             
             
             nameLabel.text =user.username;
+            nameLabel.textColor = [UIColor primaryDarkColor];
           
            
             return cell;
