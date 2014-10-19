@@ -18,7 +18,7 @@
     NSArray * objectArray;
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
-    JGProgressHUD *HUD;
+    //JGProgressHUD *HUD;
 
 }
 
@@ -45,8 +45,9 @@
      codigosLugaresArray = [[NSMutableArray alloc] init];
       placesArray = [[NSMutableArray alloc] init];
     
-    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    HUD.textLabel.text = @"Conquista exitosa!";
+    
+    //HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    //HUD.textLabel.text = @"Conquista exitosa!";
 }
 
 - (void)didReceiveMemoryWarning
