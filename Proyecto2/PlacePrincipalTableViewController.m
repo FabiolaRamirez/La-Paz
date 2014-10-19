@@ -563,4 +563,116 @@
 
 }
 
+
+
+
+
+#pragma mark - lo que hice yo daniel
+
+// este metodo muestra en dialogos las medallas que acaba de ganar al hacer checkin, se puede modificar para para mostrar las medallas del usuario, lo que se necesita del perfil
+- (void) checkNewMedallWin {
+    NSLog(@"checkNewMedallWin");
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        PFQuery *query = [PFQuery queryWithClassName:@"Conquista"];
+        [query whereKey:@"codigo_user" equalTo:currentUser.objectId];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                NSLog(@"Successfully retrieved %i conquistas.", (int)objects.count);
+                
+                NSMutableArray *codigosConquistasDelUsuario = [[NSMutableArray alloc] init];
+                for (int i = 0; i < objects.count; i++) {
+                    PFObject *object = [objects objectAtIndex:i];
+                    [codigosConquistasDelUsuario addObject:[NSString stringWithFormat:@"%@", object[@"codigo_place"]]];
+                }
+                
+                // adicionamos el id del lugar actual, es que se muestra en la pantalla
+                [codigosConquistasDelUsuario addObject:[NSString stringWithFormat:@"%@", self.lugar.objectId]];
+                
+                NSLog(@"ids lugares: %@", codigosConquistasDelUsuario);
+                
+                PFQuery *query = [PFQuery queryWithClassName:@"Medalla"];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if (!error) {
+                        NSLog(@"Successfully retrieved %i medallas.", (int)objects.count);
+                        
+                        NSMutableArray *medallasGanadas = [[NSMutableArray alloc] init];
+                        
+                        for (PFObject *medalla in objects) {
+                            NSString *lugar1 = medalla[@"place_code1"];
+                            NSString *lugar2 = medalla[@"place_code2"];
+                            NSString *lugar3 = medalla[@"place_code3"];
+                            NSLog(@"lUGARES %@ %@ %@", lugar1, lugar2, lugar3);
+                            NSLog(@"lUGARES %i %i %i", lugar1.length, lugar2.length, lugar3.length);
+                            
+                            BOOL cumple1 = NO;
+                            BOOL cumple2 = NO;
+                            BOOL cumple3 = NO;
+                            
+                            if (lugar1.length > 0) {
+                                cumple1 = [self esteString:lugar1 estaEn:codigosConquistasDelUsuario];
+                            } else {
+                                cumple1 = YES;
+                            }
+                            if (lugar2.length > 0) {
+                                cumple2 = [self esteString:lugar2 estaEn:codigosConquistasDelUsuario];
+                            } else {
+                                cumple2 = YES;
+                            }
+                            if (lugar3.length > 0) {
+                                cumple3 = [self esteString:lugar3 estaEn:codigosConquistasDelUsuario];
+                            } else {
+                                cumple3 = YES;
+                            }
+                            if (cumple1 && cumple2 && cumple3) {
+                                [medallasGanadas addObject:medalla];
+                            }
+                        }
+                        
+                        [self showMedallasGanadasEnDialogo:medallasGanadas];
+                        
+                    } else {
+                        NSLog(@"Error: %@ %@", error, [error userInfo]);
+                    }
+                }];
+            } else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    } else {
+        NSLog(@"NO HAY USUARIO ERROR RARO");
+    }
+    
+    
+}
+
+
+- (BOOL) esteString:(NSString *) string estaEn:(NSArray *) array {
+    for (NSString *s in array) {
+        if ([s isEqualToString:string]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+
+- (void) showMedallasGanadasEnDialogo: (NSArray *) medallasGanadas {
+    for (PFObject *medalla in medallasGanadas) {
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"¡Ganaste una medalla!"
+                                                           message:medalla[@"name"]
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"Aceptar"
+                                                 otherButtonTitles:nil];
+        [theAlert show];
+    }
+}
+
+
+
+
+
+
 @end
