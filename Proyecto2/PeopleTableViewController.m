@@ -20,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    personasVector=[[NSMutableArray alloc] init];
+    personasVector=[[NSArray alloc] init];
+    
     [self queryGetNumberConquerDescending];
 }
 
@@ -124,13 +125,13 @@
 -(void) queryGetNumberConquerDescending{
     
     //Query
-    PFQuery *query = [PFQuery queryWithClassName:@"User"];
-    //[query orderByDescending:@"contConquistas"];
+    PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query orderByDescending:@"contConquistas"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
+            NSLog(@"Successfully retrieved %i usuarios.", (int)objects.count);
             
             personasVector = objects;
             //actualizar tabla con datos

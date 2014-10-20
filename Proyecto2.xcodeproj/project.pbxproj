@@ -16,7 +16,6 @@
 		2038A9EC19F3240D008FB445 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EB19F3240D008FB445 /* Util.m */; };
 		2038A9F019F32DE9008FB445 /* RankingLugaresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */; };
 		203E43B019E86EC5000054F9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203E43AF19E86EC5000054F9 /* MapViewController.m */; };
-		203EA4D319B8AC1A00745189 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */; };
 		203F263B19DB3A5100D1D01A /* HerePlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */; };
 		20426ECE19D36594000F2B14 /* PerfilCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20426ECD19D36594000F2B14 /* PerfilCell.m */; };
 		20426ED019D365C9000F2B14 /* PerfilCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20426ECF19D365C9000F2B14 /* PerfilCell.xib */; };
@@ -95,6 +94,7 @@
 		20EAD6CA190EC3BA00AD9126 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20EAD6C8190EC3BA00AD9126 /* InfoPlist.strings */; };
 		20EAD6CC190EC3BA00AD9126 /* Proyecto2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EAD6CB190EC3BA00AD9126 /* Proyecto2Tests.m */; };
 		20FFD8AF19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */; };
+		9DA93C7319F4A971002367AA /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,7 +123,6 @@
 		2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingLugaresTableViewController.m; sourceTree = "<group>"; };
 		203E43AE19E86EC5000054F9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		203E43AF19E86EC5000054F9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "../../../../Downloads/parse-library-1-2/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		203F263919DB3A5100D1D01A /* HerePlaceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HerePlaceTableViewController.h; sourceTree = "<group>"; };
 		203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HerePlaceTableViewController.m; sourceTree = "<group>"; };
 		20426ECC19D36594000F2B14 /* PerfilCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerfilCell.h; sourceTree = "<group>"; };
@@ -245,6 +244,7 @@
 		20EAD6CB190EC3BA00AD9126 /* Proyecto2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Proyecto2Tests.m; sourceTree = "<group>"; };
 		20FFD8AD19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePrincipalTableViewController.h; sourceTree = "<group>"; };
 		20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePrincipalTableViewController.m; sourceTree = "<group>"; };
+		9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DA93C7319F4A971002367AA /* ParseFacebookUtils.framework in Frameworks */,
 				2062DEFD198714880035F5A0 /* QuartzCore.framework in Frameworks */,
 				2044B2FA19BB598000AEB2E6 /* libsqlite3.dylib in Frameworks */,
 				20A4C5D819B6534E00479852 /* AdSupport.framework in Frameworks */,
@@ -267,7 +268,6 @@
 				20EAD6A0190EC3B900AD9126 /* CoreGraphics.framework in Frameworks */,
 				2062DF0A198728870035F5A0 /* SDWebImage.framework in Frameworks */,
 				2062DEF7198714040035F5A0 /* CFNetwork.framework in Frameworks */,
-				203EA4D319B8AC1A00745189 /* ParseFacebookUtils.framework in Frameworks */,
 				2062DEF5198713F70035F5A0 /* AudioToolbox.framework in Frameworks */,
 				200A4F2E1960F623003700D2 /* CoreLocation.framework in Frameworks */,
 				203490E21915A8200028ABC3 /* MapKit.framework in Frameworks */,
@@ -490,8 +490,8 @@
 		20EAD69C190EC3B900AD9126 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */,
 				2044B2F919BB598000AEB2E6 /* libsqlite3.dylib */,
-				203EA4D219B8AC1A00745189 /* ParseFacebookUtils.framework */,
 				20A4C5D719B6534E00479852 /* AdSupport.framework */,
 				20A4C5D519B6533100479852 /* Accounts.framework */,
 				20C7952C19B415FB00A1335E /* FacebookSDK.framework */,
