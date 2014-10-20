@@ -183,7 +183,7 @@
 
 - (void) configSegmentedControl {
     NSArray *buttonNames = [NSArray arrayWithObjects:
-                            @"Conquistados", @"Económicos", @"Etc", nil];
+                            @"Conquistados", @"Económicos", @"Recomendados", nil];
     segmentedControl = [[UISegmentedControl alloc]
                         initWithItems:buttonNames];
     segmentedControl.frame = CGRectMake(10, 7, 300, 30);
@@ -217,7 +217,7 @@
 
 - (void) getRanking1PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    //[query orderByAscending:@"Tipo"];
+    [query orderByAscending:@"ranking_conquistas"];
     query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -238,8 +238,8 @@
 
 - (void) getRanking2PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    //[query orderByAscending:@"Tipo"];
-    query.limit = 10;
+    [query orderByAscending:@"ranking_economico"];
+    query.limit = 2;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
@@ -259,8 +259,8 @@
 
 - (void) getRanking3PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    //[query orderByAscending:@"Tipo"];
-    query.limit = 10;
+    [query orderByAscending:@"ranking_recomendados"];
+    query.limit = 5;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
