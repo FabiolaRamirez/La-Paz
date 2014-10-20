@@ -135,10 +135,12 @@
             personasVector = objects;
             //actualizar tabla con datos
             [self.tableView reloadData];
+           
             
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
+            
         }
         
     }];
