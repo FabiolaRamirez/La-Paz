@@ -10,6 +10,7 @@
 		200A4F291960EDDB003700D2 /* VistaPrincipalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200A4F281960EDDB003700D2 /* VistaPrincipalViewController.m */; };
 		200A4F2E1960F623003700D2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200A4F2D1960F623003700D2 /* CoreLocation.framework */; };
 		20218D1019B52D9E002E111E /* InformationPlace2TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20218D0F19B52D9E002E111E /* InformationPlace2TableViewController.m */; };
+		202AFB3619FF367F00DDD5A9 /* MapDetailPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202AFB3519FF367F00DDD5A9 /* MapDetailPlaceViewController.m */; };
 		2032586B19D5BDCB00DC1CB9 /* ConquerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2032586A19D5BDCB00DC1CB9 /* ConquerCell.xib */; };
 		203490E21915A8200028ABC3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203490E11915A8200028ABC3 /* MapKit.framework */; };
 		2038A9E719F31477008FB445 /* UIColor+LaPaz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9E619F31477008FB445 /* UIColor+LaPaz.m */; };
@@ -113,6 +114,8 @@
 		200A4F2D1960F623003700D2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		20218D0E19B52D9E002E111E /* InformationPlace2TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationPlace2TableViewController.h; sourceTree = "<group>"; };
 		20218D0F19B52D9E002E111E /* InformationPlace2TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationPlace2TableViewController.m; sourceTree = "<group>"; };
+		202AFB3419FF367F00DDD5A9 /* MapDetailPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDetailPlaceViewController.h; sourceTree = "<group>"; };
+		202AFB3519FF367F00DDD5A9 /* MapDetailPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDetailPlaceViewController.m; sourceTree = "<group>"; };
 		2032586A19D5BDCB00DC1CB9 /* ConquerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConquerCell.xib; sourceTree = "<group>"; };
 		203490E11915A8200028ABC3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2038A9E519F31477008FB445 /* UIColor+LaPaz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LaPaz.h"; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				203E43AF19E86EC5000054F9 /* MapViewController.m */,
 				2038A9EE19F32DE9008FB445 /* RankingLugaresTableViewController.h */,
 				2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */,
+				202AFB3419FF367F00DDD5A9 /* MapDetailPlaceViewController.h */,
+				202AFB3519FF367F00DDD5A9 /* MapDetailPlaceViewController.m */,
 			);
 			name = Place;
 			sourceTree = "<group>";
@@ -711,6 +716,7 @@
 				2038A9EC19F3240D008FB445 /* Util.m in Sources */,
 				20EAD6AA190EC3B900AD9126 /* main.m in Sources */,
 				209F644219F1AC2100F38F03 /* PeopleTableViewController.m in Sources */,
+				202AFB3619FF367F00DDD5A9 /* MapDetailPlaceViewController.m in Sources */,
 				2062DF06198719EC0035F5A0 /* PlacesTableViewController.m in Sources */,
 				2096F57A19C8BC0600D80AB6 /* SectionPlaceCollectionViewController.m in Sources */,
 				20652ADA19F1E5B80042BD42 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,

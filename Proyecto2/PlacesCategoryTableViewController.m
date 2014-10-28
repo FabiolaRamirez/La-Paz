@@ -8,8 +8,7 @@
 
 #import "PlacesCategoryTableViewController.h"
 #import "PlacesTableViewController.h"
-
-
+#import "MapDetailPlaceViewController.h"
 @interface PlacesCategoryTableViewController (){
 
     NSArray * categorias;
@@ -140,6 +139,11 @@
     // push para continuar
     PlacesTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placesTableViewController"];
     tableViewController.lugar = categoria;
+    
+    //para el viewController de mapas
+    MapDetailPlaceViewController *mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
+    mapViewController.Object = categoria;
+    
     
     [self.navigationController pushViewController:tableViewController animated:YES];
     // modal es para salir de contexto

@@ -183,7 +183,7 @@
 
 - (void) configSegmentedControl {
     NSArray *buttonNames = [NSArray arrayWithObjects:
-                            @"Conquistados", @"Económicos", @"Recomendados", nil];
+                            @"Conquistados", @"Populares", @"Recomendados", nil];
     segmentedControl = [[UISegmentedControl alloc]
                         initWithItems:buttonNames];
     segmentedControl.frame = CGRectMake(10, 7, 300, 30);

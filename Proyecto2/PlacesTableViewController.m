@@ -7,6 +7,7 @@
 //
 
 #import "PlacesTableViewController.h"
+#import "MapDetailPlaceViewController.h"
 @interface PlacesTableViewController () {
     NSArray * places;
     NSArray * places_Conquitados;
@@ -279,5 +280,12 @@
     [self getPlacesFromParse];
 }
 
+- (IBAction)mapsButton:(UIBarButtonItem *)sender {
+    
+    MapDetailPlaceViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
+        
+    [self.navigationController pushViewController:tableViewController animated:YES];
+
+}
 
 @end
