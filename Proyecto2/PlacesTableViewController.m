@@ -132,7 +132,7 @@
     
     //para el contador de lugares conquistados a nivel general
     //NO DISPONIBLE ESTA MAL
-    /*
+    
     NSString *cate = placeDetail.objectId;
     NSLog(@".......:::%@",cate);
     
@@ -152,7 +152,7 @@
         }
         
     }];
-    */
+    
     
     // obtmer la bucacion del lugar
     PFGeoPoint * placeGeoPoint = placeDetail[@"coordinate"];

@@ -60,7 +60,7 @@
                 miAnotacion.title = nombre;
                 miAnotacion.subtitle = descripcion;
                 
-                MKCoordinateRegion miRegion1= MKCoordinateRegionMakeWithDistance(Localizacion, 2500, 2500);
+                MKCoordinateRegion miRegion1= MKCoordinateRegionMakeWithDistance(Localizacion, 9500, 9500);
                 //Enviar vistadel mapa
                 [self.mapView setRegion:miRegion1 animated:YES];
                 //miAnotacion.subtitle=(NSString *)place[@"name"];
