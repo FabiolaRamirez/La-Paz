@@ -50,7 +50,7 @@
     PFGeoPoint *geoPoint=[self.Object objectForKey:@"coordinate"];
     
     NSString *nombre = (NSString *)[self.Object objectForKey:@"name"];
-    NSString *descripcion = (NSString *)[self.Object objectForKey:@"description"];
+    NSString *descripcion = (NSString *)[self.Object objectForKey:@"address"];
     // ahora puedes usar esas variables donde sea...
     NSLog(@"nombre: %@  descripcion: %@", nombre, descripcion);
     

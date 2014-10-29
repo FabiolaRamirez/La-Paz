@@ -122,7 +122,7 @@
         
         // asi se saca el titulo y la desc, igual que que el geopoint, osea igual que en todos los quetys que ya hicimos antes en las otras pantallas
         NSString *nombre = (NSString *)[self.lugar objectForKey:@"name"];
-        NSString *descripcion = (NSString *)[self.lugar objectForKey:@"description"];
+        NSString *descripcion = (NSString *)[self.lugar objectForKey:@"address"];
         // ahora puedes usar esas variables donde sea...
         NSLog(@"nombre: %@  descripcion: %@", nombre, descripcion);
         

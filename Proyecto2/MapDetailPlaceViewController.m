@@ -24,6 +24,7 @@
     VectorPlaces = [[NSMutableArray alloc] init];
     
     self.mapView.delegate=self;
+    [self.mapView setShowsUserLocation:YES];
     //_locationManager.delegate = self;
     
     NSMutableArray * VectorAnotaciones=[[NSMutableArray alloc] init];
@@ -43,7 +44,7 @@
                 
                 // asi se saca el titulo y la desc, igual que que el geopoint, osea igual que en todos los quetys que ya hicimos antes en las otras pantallas
                 NSString *nombre = (NSString *)[object objectForKey:@"name"];
-                NSString *descripcion = (NSString *)[object objectForKey:@"description"];
+                NSString *descripcion = (NSString *)[object objectForKey:@"address"];
                 // ahora puedes usar esas variables donde sea...
                 NSLog(@"nombre: %@  descripcion: %@", nombre, descripcion);
                 
@@ -58,6 +59,10 @@
                 
                 miAnotacion.title = nombre;
                 miAnotacion.subtitle = descripcion;
+                
+                MKCoordinateRegion miRegion1= MKCoordinateRegionMakeWithDistance(Localizacion, 2500, 2500);
+                //Enviar vistadel mapa
+                [self.mapView setRegion:miRegion1 animated:YES];
                 //miAnotacion.subtitle=(NSString *)place[@"name"];
                 [VectorAnotaciones addObject:miAnotacion];
                 [self.mapView addAnnotations:VectorAnotaciones];

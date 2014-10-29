@@ -34,7 +34,7 @@
 	<key>FacebookAppID</key>
 	<string>1675738872652049</string>
 	<key>FacebookDisplayName</key>
-	<string>Fapi Aplicacion</string>
+	<string>La Paz</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSVisibleInClassic</key>
@@ -42,7 +42,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This application requires location services to work</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>uuuuuuu</string>
+	<string>Esta aplicación requiere su autorización para su localización</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
