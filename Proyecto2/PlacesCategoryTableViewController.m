@@ -36,7 +36,7 @@
     
     categorias = [[NSMutableArray alloc] init];
     
-    NSString *nom=self.ObjetoC[@"name"];
+    NSString *nom = self.seccionObject[@"name"];
     self.navigationItem.title = nom;
     
     [self getPlacesFromParse];
@@ -51,7 +51,7 @@
 
 -(void) getPlacesFromParse{
     //Query
-    NSString *cate = self.ObjetoC[@"code"];
+    NSString *cate = self.seccionObject[@"code"];
     NSLog(@".......:::%@",cate);
     PFQuery *query = [PFQuery queryWithClassName:@"Categoria"];
     [query whereKey:@"code1" equalTo:cate];
@@ -138,12 +138,7 @@
     
     // push para continuar
     PlacesTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placesTableViewController"];
-    tableViewController.lugar = categoria;
-    
-    //para el viewController de mapas
-    MapDetailPlaceViewController *mapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
-    mapViewController.Object = categoria;
-    
+    tableViewController.categoriaObject = categoria;
     
     [self.navigationController pushViewController:tableViewController animated:YES];
     // modal es para salir de contexto

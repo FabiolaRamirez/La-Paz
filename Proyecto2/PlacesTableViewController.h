@@ -13,7 +13,7 @@
 #import "Util.h"
 @interface PlacesTableViewController : UITableViewController
 
-@property (nonatomic,strong) PFObject *lugar;
+@property (nonatomic,strong) PFObject *categoriaObject;
 
 
 

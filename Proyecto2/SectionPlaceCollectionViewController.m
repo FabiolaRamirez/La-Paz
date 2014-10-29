@@ -40,15 +40,12 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
             
             itemArray = objects;
-            //actualizar tabla con datos
             [self.collectionView reloadData];
             
         } else {
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
         
@@ -114,7 +111,7 @@
     
     // push para continuar
     PlacesCategoryTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placesCategoryTableViewController"];
-    tableViewController.ObjetoC=sectionPlace;
+    tableViewController.seccionObject = sectionPlace;
     
     [self.navigationController pushViewController:tableViewController animated:YES];
 

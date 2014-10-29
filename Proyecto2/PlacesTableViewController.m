@@ -37,7 +37,7 @@
     places_Conquitados = [[NSMutableArray alloc] init];
     
     
-    NSString *nom=self.lugar[@"name"];
+    NSString *nom = self.categoriaObject[@"name"];
     self.navigationItem.title = nom;
     
     [self getPlacesFromParse];
@@ -51,7 +51,7 @@
 
 
 - (void) getPlacesFromParse {
-    NSString *cate = self.lugar[@"code"];
+    NSString *cate = self.categoriaObject[@"code"];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
     [query whereKey:@"code" equalTo:cate];
@@ -281,11 +281,9 @@
 }
 
 - (IBAction)mapsButton:(UIBarButtonItem *)sender {
-    
-    MapDetailPlaceViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
-        
-    [self.navigationController pushViewController:tableViewController animated:YES];
-
+    MapDetailPlaceViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
+    viewController.categoriaObject = self.categoriaObject;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

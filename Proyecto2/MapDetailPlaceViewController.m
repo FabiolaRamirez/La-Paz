@@ -28,7 +28,7 @@
     
     NSMutableArray * VectorAnotaciones=[[NSMutableArray alloc] init];
     
-    NSString * dodex=self.Object[@"code"];
+    NSString *dodex = self.categoriaObject[@"code"];
     NSLog(@"code!!!!!!!!!!!!!!!!!%@",dodex);
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
     [query whereKey:@"code" equalTo:dodex];

@@ -13,6 +13,6 @@
 
 @interface PlacesCategoryTableViewController : UITableViewController
 
-@property (nonatomic,strong) PFObject *ObjetoC;
+@property (nonatomic,strong) PFObject *seccionObject;
 
 @end

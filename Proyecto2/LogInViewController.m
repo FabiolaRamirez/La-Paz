@@ -182,12 +182,17 @@ UIGestureRecognizer *tapper;
 #pragma mark - Login con facebook
 - (IBAction)loginWithFacebook:(UIButton *)sender {
     
+    NSLog(@"loginWithFacebook");
+    
     NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends"];
     [HUD showInView:self.view];
     // Login PFUser using Facebook
+    NSLog(@"loginWithFacebook 2");
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+        NSLog(@"loginWithFacebook 3");
         [HUD dismissAnimated:YES];
         if (user) {
+            NSLog(@"loginWithFacebook 4");
             
             if (user.isNew) {
                 NSLog(@"User with facebook signed up and logged in!");
@@ -206,8 +211,7 @@ UIGestureRecognizer *tapper;
                 
             }
             
-        }
-        else {
+        } else {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
             
             NSString *errorMessage = nil;
@@ -268,21 +272,21 @@ UIGestureRecognizer *tapper;
 
 - (void)showErrorHUD {
     JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-
+    
     HUD2.textLabel.text = @"Error!";
     HUD2.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
     
     HUD2.square = YES;
     
     [HUD2 showInView:self.navigationController.view];
-
+    
     [HUD2 dismissAfterDelay:2.0];
 }
 
 
 
 - (void)showSuccessHUD {
-JGProgressHUD *HUD3 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
+    JGProgressHUD *HUD3 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
     
     HUD.textLabel.text = @"Success!";
     HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];

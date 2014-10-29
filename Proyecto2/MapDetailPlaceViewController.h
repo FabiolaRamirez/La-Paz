@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
-@property (nonatomic,strong) PFObject *Object;
+@property (nonatomic,strong) PFObject *categoriaObject;
+
 @property (nonatomic, retain) CLLocationManager *locationManager;
+
 @end
