@@ -7,6 +7,7 @@
 //
 
 #import "UtilParse.h"
+#import <Parse/Parse.h>
 
 
 @implementation UtilParse

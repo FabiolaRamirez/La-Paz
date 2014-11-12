@@ -11,6 +11,7 @@
 #import "UIColor+LaPaz.h"
 #import "Util.h"
 #import "PlacePrincipalTableViewController.h"
+#import "PlaceMainTableViewController.h"
 
 @implementation RankingLugaresTableViewController {
     UISegmentedControl* segmentedControl;
@@ -150,10 +151,17 @@
     
     
     // push para continuar
+    /* antes era asi
     PlacePrincipalTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placePrincipalTableViewController"];
     viewController.lugar = p;
-    
     [self.navigationController pushViewController:viewController animated:YES];
+    */
+     
+    PlaceMainTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placeMainTableViewController"];
+    viewController.lugar = p;
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+    
     
     
     // modal es para salir de contexto

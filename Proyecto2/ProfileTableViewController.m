@@ -32,32 +32,56 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     codigosLugaresArray = [[NSMutableArray alloc] init];
     placesArray = [[NSArray alloc] init];
     
-    
     [self setCurrentUser];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"se ejecuta cada rato");
     
-    placesArray = [UtilParse getConquistasToCurrentUser];
-    NSLog(@"NUMERO DE %i", (int)[placesArray count]);
-    [self.tableView reloadData];
+    [self getConqueredPlaces];
 }
 
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Querys
+
+- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
+    NSLog(@"Start getConqueredPlaces.");
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query includeKey:@"place"]; // es para que el query saque todos los datos de place
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"End getConqueredPlaces. Nro. Places: %i", (int)[objects count]);
+            NSMutableArray *places = [[NSMutableArray alloc] init];
+            for (PFObject *conquest in objects) {
+                PFObject *place = conquest[@"place"];
+                [places addObject:place];
+            }
+            // Update data
+            placesArray = places;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+
+
+
 
 #pragma mark - Table view data source
 

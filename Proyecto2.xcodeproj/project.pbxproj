@@ -95,6 +95,7 @@
 		20EAD6CA190EC3BA00AD9126 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20EAD6C8190EC3BA00AD9126 /* InfoPlist.strings */; };
 		20EAD6CC190EC3BA00AD9126 /* Proyecto2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EAD6CB190EC3BA00AD9126 /* Proyecto2Tests.m */; };
 		20FFD8AF19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */; };
+		9DA291BB1A1333E900E0003F /* PlaceMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA291BA1A1333E900E0003F /* PlaceMainTableViewController.m */; };
 		9DA93C7319F4A971002367AA /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +248,8 @@
 		20EAD6CB190EC3BA00AD9126 /* Proyecto2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Proyecto2Tests.m; sourceTree = "<group>"; };
 		20FFD8AD19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePrincipalTableViewController.h; sourceTree = "<group>"; };
 		20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePrincipalTableViewController.m; sourceTree = "<group>"; };
+		9DA291B91A1333E900E0003F /* PlaceMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMainTableViewController.h; sourceTree = "<group>"; };
+		9DA291BA1A1333E900E0003F /* PlaceMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMainTableViewController.m; sourceTree = "<group>"; };
 		9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				200A4F2E1960F623003700D2 /* CoreLocation.framework in Frameworks */,
 				9DA93C7319F4A971002367AA /* ParseFacebookUtils.framework in Frameworks */,
 				2062DEFD198714880035F5A0 /* QuartzCore.framework in Frameworks */,
 				2044B2FA19BB598000AEB2E6 /* libsqlite3.dylib in Frameworks */,
@@ -272,7 +276,6 @@
 				2062DF0A198728870035F5A0 /* SDWebImage.framework in Frameworks */,
 				2062DEF7198714040035F5A0 /* CFNetwork.framework in Frameworks */,
 				2062DEF5198713F70035F5A0 /* AudioToolbox.framework in Frameworks */,
-				200A4F2E1960F623003700D2 /* CoreLocation.framework in Frameworks */,
 				203490E21915A8200028ABC3 /* MapKit.framework in Frameworks */,
 				20EAD6A2190EC3B900AD9126 /* UIKit.framework in Frameworks */,
 				2062DEF3198713B60035F5A0 /* Parse.framework in Frameworks */,
@@ -366,6 +369,7 @@
 		20AC699019944A380008E4B3 /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				9DA291B81A1333B800E0003F /* new */,
 				20D005E419AEC4FE0028693B /* InformationPlaceTableViewController.h */,
 				20D005E519AEC4FE0028693B /* InformationPlaceTableViewController.m */,
 				20218D0E19B52D9E002E111E /* InformationPlace2TableViewController.h */,
@@ -393,6 +397,7 @@
 		20AC69911994556D0008E4B3 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				20652ABE19F1E5B80042BD42 /* JGProgressHUD */,
 				20AC69921994557F0008E4B3 /* TGFoursquareLocationDetail */,
 			);
 			name = Libs;
@@ -527,7 +532,6 @@
 			children = (
 				2038A9ED19F32D78008FB445 /* Lugares */,
 				2038A9E919F323DE008FB445 /* Util */,
-				20652ABE19F1E5B80042BD42 /* JGProgressHUD */,
 				20A4C5D919B659D100479852 /* LogIn */,
 				204B6C5F19A2E1F0009CDC55 /* Buscar */,
 				20AC69C0199849860008E4B3 /* User */,
@@ -573,6 +577,15 @@
 				20EAD6C8190EC3BA00AD9126 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9DA291B81A1333B800E0003F /* new */ = {
+			isa = PBXGroup;
+			children = (
+				9DA291B91A1333E900E0003F /* PlaceMainTableViewController.h */,
+				9DA291BA1A1333E900E0003F /* PlaceMainTableViewController.m */,
+			);
+			name = new;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -704,6 +717,7 @@
 				203F263B19DB3A5100D1D01A /* HerePlaceTableViewController.m in Sources */,
 				20EAD6AE190EC3B900AD9126 /* AppDelegate.m in Sources */,
 				20652ADD19F1E5B80042BD42 /* JGProgressHUDRingIndicatorView.m in Sources */,
+				9DA291BB1A1333E900E0003F /* PlaceMainTableViewController.m in Sources */,
 				20652ADE19F1E5B80042BD42 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
 				2096F57D19C8BCA400D80AB6 /* SectionPlaceCollectionViewCell.m in Sources */,
 				204B6C6219A2E20D009CDC55 /* SearchTableViewController.m in Sources */,

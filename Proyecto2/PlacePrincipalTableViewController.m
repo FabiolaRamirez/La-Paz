@@ -10,28 +10,22 @@
 #import "InformationPlace2TableViewController.h"
 #import "InformationPlaceTableViewController.h"
 #import <MapKit/MapKit.h>
-#import "JGProgressHUD.h"
-#import "JGProgressHUDSuccessIndicatorView.h"
-#import "JGProgressHUDErrorIndicatorView.h"
+
 @interface PlacePrincipalTableViewController ()
 {
     NSArray * objectArray;
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
-    JGProgressHUD *HUD;
-    JGProgressHUD *HUD2;
-    JGProgressHUD *HUD3;
-    JGProgressHUD *HUD4;
 }
 
+@property (weak, nonatomic) IBOutlet UIButton *conquistarButton;
 
 @end
 
 @implementation PlacePrincipalTableViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -39,45 +33,33 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     //vector para celdas
     objectArray=[[NSMutableArray alloc] initWithCapacity:5];
-     codigosLugaresArray = [[NSMutableArray alloc] init];
-      placesArray = [[NSMutableArray alloc] init];
-
-    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    HUD.textLabel.text = @"Ingresando...";
+    codigosLugaresArray = [[NSMutableArray alloc] init];
+    placesArray = [[NSMutableArray alloc] init];
     
+    [self isConquest]; // pregunta si esta conquistado el lugar, para ver si habilitar el boton de conquistar
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 5;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell0" forIndexPath:indexPath];
         UIImageView * placeImageView = (UIImageView *)[cell viewWithTag:1];
         UILabel * placeNameLabel = (UILabel *)[cell viewWithTag:2];
@@ -104,9 +86,7 @@
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
         return cell;
-    }
-    
-    else if (indexPath.row == 2) {
+    } else if (indexPath.row == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2" forIndexPath:indexPath];
         
         UILabel * directionLabel = (UILabel *)[cell viewWithTag:4];
@@ -174,7 +154,7 @@
                 }
                 else{
                     //muestra distancia mayor a 1km
-                   //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
+                    //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
                     countKmLabel.text = [Util number2Decimals:distancia];
                 }
                 
@@ -263,63 +243,16 @@
     
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Actions
 
 - (IBAction)conquistarButton:(id)sender {
+    [Util showProgress:self.navigationController.view]; // empieza el progreso
     
     // obtmer la bucacion del lugar
     PFGeoPoint * placeGeoPoint = self.lugar[@"coordinate"];
-    NSLog(@"lugar %f",placeGeoPoint.latitude);
-    NSLog(@"%f",placeGeoPoint.longitude);
+    NSLog(@"lugar %f", placeGeoPoint.latitude);
+    NSLog(@"%f", placeGeoPoint.longitude);
     
-      [HUD showInView:self.view];
     // obtener ubicacion del usuario
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *userGeoPoint, NSError *error) {
         if (!error) {
@@ -328,26 +261,26 @@
             
             // codigo para calcular la distancia
             
-            
             double distancia = [userGeoPoint distanceInKilometersTo:placeGeoPoint];
             
             NSLog(@"distancia %f km", distancia);
             
-            if (distancia < 0.3) {
+            // si se pone 10000 se puede conquistar desde muy lejos
+            if (distancia < 10000) {
                 
-                [self getConquistasToCurrentUser];
+                [self saveConquest]; // guarda en Parse la conquista
                 
             } else {
-                [HUD dismissAnimated:YES];
                 // Alerta donde no se puede conquistar porque esta fuera de rango
-                [self showErrorOutHUD];
-            
+                [Util hideProgress:self.navigationController.view]; // ocultamos el progress
+                [Util showError:@"Estas muy lejos para conquistar este lugar" view:self.navigationController.view];
             }
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");
-            [HUD dismissAnimated:YES];
-            [self showErrorInternetHUD];
+            
+            [Util hideProgress:self.navigationController.view]; // ocultamos el progress
+            [Util showError:@"No se puede obtener tu ubucación" view:self.navigationController.view];
         }
     }];
     
@@ -408,8 +341,8 @@
             // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
             // funciona
-             placesArray=objects;
-             [self.tableView reloadData];
+            placesArray=objects;
+            [self.tableView reloadData];
             
             
             for (int i=0; i<[placesArray count]; i++) {
@@ -423,15 +356,12 @@
                 }
             }
             if (sw==1) {
-                [HUD dismissAnimated:YES];
+//                [HUD dismissAnimated:YES];
                 //Alerta donde ya conquisto ese lugar
-                [self showErrorHUD];
+//                [self showErrorHUD];
                 
             }
             else{
-                [HUD dismissAnimated:YES];
-                //Alerta donde la conquista fue exitosa
-                [self showSuccessHUD];
                 [self saveToParseConquista];
             }
             
@@ -514,7 +444,7 @@
 }
 
 -(void) consultaMedallaAsignada{
-     _medall = [PFObject objectWithClassName:@"Medalla"];
+    _medall = [PFObject objectWithClassName:@"Medalla"];
     NSString *medalla = _medall.objectId;
     NSLog(@".......:::%@",medalla);
     
@@ -555,57 +485,7 @@
         // show the signup or login screen
         NSLog(@"error raro, no hay usuario");
     }
-
-}
-
-- (void)showSuccessHUD {
-    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleExtraLight];
     
-    HUD.textLabel.text = @"Conquistado";
-    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
-    
-    HUD.square = YES;
-    
-    [HUD showInView:self.navigationController.view];
-    
-    [HUD dismissAfterDelay:3.0];
-}
-- (void)showErrorHUD {
-    HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    
-    HUD2.textLabel.text = @"Ya conquiste!";
-    HUD2.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
-    
-    HUD2.square = YES;
-    
-    [HUD2 showInView:self.navigationController.view];
-    
-    [HUD2 dismissAfterDelay:2.0];
-}
-- (void)showErrorOutHUD {
-    HUD3 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    
-    HUD3.textLabel.text = @"No esta aqui!";
-    HUD3.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
-    
-    HUD3.square = YES;
-    
-    [HUD3 showInView:self.navigationController.view];
-    
-    [HUD3 dismissAfterDelay:2.0];
-}
-
-- (void)showErrorInternetHUD {
-    JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
-    
-    HUD4.textLabel.text = @"Revise su conexión";
-    HUD4.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
-    
-    HUD4.square = YES;
-    
-    [HUD4 showInView:self.navigationController.view];
-    
-    [HUD4 dismissAfterDelay:2.0];
 }
 
 
@@ -718,6 +598,52 @@
 
 
 
+#pragma mark - Parse
+
+- (void) saveConquest {
+    NSLog(@"Start saveConquest.");
+    PFObject *conquest = [PFObject objectWithClassName:@"Conquest"];
+    [conquest setObject:[PFUser currentUser]  forKey:@"user"];
+    [conquest setObject:self.lugar forKey:@"place"];
+    [conquest setObject:[NSDate date] forKey:@"date"];
+    [conquest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        [Util hideProgress:self.navigationController.view]; // ocultar el progreso
+        
+        if(succeeded) {
+            NSLog(@"End saveConquest.");
+
+            [Util showSuccess:@"¡Felicidades! conquistaste este lugar" view:self.navigationController.view];
+        } else {
+            NSLog(@"Error (saveConquest): %@", error);
+        }
+    }];
+}
+
+- (void) isConquest { // pregunta si esta conquistado este lugar
+    NSLog(@"Start isConquest.");
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query whereKey:@"place" equalTo:self.lugar];
+    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        NSLog(@"End isConquest.");
+        
+        if (!error) {
+            if (count > 0) { // si esta conquistado si entra aca
+                self.conquistarButton.enabled = NO;
+                [self.conquistarButton setTitle:@"Conquistado" forState:UIControlStateNormal];
+            } else { // no esta conquistado si entra aca
+                self.conquistarButton.enabled = YES;
+                [self.conquistarButton setTitle:@"Conquistar" forState:UIControlStateNormal];
+            }
+        } else {
+            NSLog(@"Error (isConquest): %@", error);
+            
+            [Util showConnectionError:self.navigationController.view];
+        }
+    }];
+}
 
 
 @end
