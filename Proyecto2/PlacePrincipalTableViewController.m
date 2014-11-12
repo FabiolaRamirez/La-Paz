@@ -9,7 +9,6 @@
 #import "PlacePrincipalTableViewController.h"
 #import "InformationPlace2TableViewController.h"
 #import "InformationPlaceTableViewController.h"
-#import "QualifyViewController.h"
 #import <MapKit/MapKit.h>
 #import "JGProgressHUD.h"
 #import "JGProgressHUDSuccessIndicatorView.h"
@@ -469,15 +468,9 @@
 
 
 
-- (IBAction)calificarButton:(id)sender {
-    QualifyViewController *viewController =  [self.storyboard instantiateViewControllerWithIdentifier:@"qualifyViewController"];
-    [self.navigationController pushViewController:viewController animated:YES];
-}
 
-- (IBAction)compartirButton:(id)sender {
-    QualifyViewController *viewController =  [self.storyboard instantiateViewControllerWithIdentifier:@"qualifyViewController"];
-    [self.navigationController pushViewController:viewController animated:YES];
-}
+
+
 
 
 //-----------------------------------------------
@@ -719,6 +712,9 @@
     }
 }
 
+- (IBAction)compartirButton:(UIBarButtonItem *)sender {
+    
+}
 
 
 

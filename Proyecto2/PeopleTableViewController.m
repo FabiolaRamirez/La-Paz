@@ -66,6 +66,8 @@
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if(!error){
+            UserImageView.layer.masksToBounds=YES;
+            UserImageView.layer.cornerRadius=34;
             UserImageView.image=[UIImage imageWithData:data];
             NSLog(@"entra!!");
         }

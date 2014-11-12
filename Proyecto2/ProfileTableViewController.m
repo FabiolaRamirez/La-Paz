@@ -101,6 +101,9 @@
             
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if(!error){
+                    fotoUserImageView.layer.masksToBounds=YES;
+                    fotoUserImageView.layer.cornerRadius=30;
+
                     fotoUserImageView.image=[UIImage imageWithData:data];
                     NSLog(@"entra!!");
                 }
@@ -127,13 +130,14 @@
             PFObject *placeDetail = [placesArray objectAtIndex:indexPath.row];
             cell.titleLabel.text = placeDetail[@"name"];
             cell.directionLabel.text = placeDetail[@"address"];
-            
-            //para obtener imagen
+                        //para obtener imagen
             PFFile *imageFile = [placeDetail objectForKey:@"imageFile"];
             
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if(!error){
-                    cell.placeImageView.image = [UIImage imageWithData:data];
+                cell.placeImageView.image = [UIImage imageWithData:data];
+                    
+                   
                     NSLog(@"entra!!");
                 }
                 else{

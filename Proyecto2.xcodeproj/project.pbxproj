@@ -58,7 +58,6 @@
 		207F2CC619C7709700C255D8 /* userfondo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 207F2CC519C7709700C255D8 /* userfondo.jpg */; };
 		2081D46719CC926E000AC248 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2081D46619CC926E000AC248 /* ImageCell.xib */; };
 		2081D46A19CC9294000AC248 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2081D46919CC9294000AC248 /* ImageCell.m */; };
-		20872BB119E49CD500BED415 /* QualifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20872BB019E49CD500BED415 /* QualifyViewController.m */; };
 		2089FF9419EF1C73001F3808 /* RewardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2089FF9319EF1C73001F3808 /* RewardTableViewController.m */; };
 		2096F57A19C8BC0600D80AB6 /* SectionPlaceCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2096F57919C8BC0600D80AB6 /* SectionPlaceCollectionViewController.m */; };
 		2096F57D19C8BCA400D80AB6 /* SectionPlaceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2096F57C19C8BCA400D80AB6 /* SectionPlaceCollectionViewCell.m */; };
@@ -191,8 +190,6 @@
 		2081D46619CC926E000AC248 /* ImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		2081D46819CC9294000AC248 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
 		2081D46919CC9294000AC248 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
-		20872BAF19E49CD500BED415 /* QualifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QualifyViewController.h; sourceTree = "<group>"; };
-		20872BB019E49CD500BED415 /* QualifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QualifyViewController.m; sourceTree = "<group>"; };
 		2089FF9219EF1C73001F3808 /* RewardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardTableViewController.h; sourceTree = "<group>"; };
 		2089FF9319EF1C73001F3808 /* RewardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardTableViewController.m; sourceTree = "<group>"; };
 		2096F57819C8BC0600D80AB6 /* SectionPlaceCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionPlaceCollectionViewController.h; sourceTree = "<group>"; };
@@ -383,8 +380,6 @@
 				203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */,
 				20FFD8AD19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.h */,
 				20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */,
-				20872BAF19E49CD500BED415 /* QualifyViewController.h */,
-				20872BB019E49CD500BED415 /* QualifyViewController.m */,
 				203E43AE19E86EC5000054F9 /* MapViewController.h */,
 				203E43AF19E86EC5000054F9 /* MapViewController.m */,
 				2038A9EE19F32DE9008FB445 /* RankingLugaresTableViewController.h */,
@@ -707,7 +702,6 @@
 				20652AD619F1E5B80042BD42 /* JGProgressHUDAnimation.m in Sources */,
 				204D4DAC19B69503000861D9 /* RegisterViewController.m in Sources */,
 				203F263B19DB3A5100D1D01A /* HerePlaceTableViewController.m in Sources */,
-				20872BB119E49CD500BED415 /* QualifyViewController.m in Sources */,
 				20EAD6AE190EC3B900AD9126 /* AppDelegate.m in Sources */,
 				20652ADD19F1E5B80042BD42 /* JGProgressHUDRingIndicatorView.m in Sources */,
 				20652ADE19F1E5B80042BD42 /* JGProgressHUDSuccessIndicatorView.m in Sources */,
