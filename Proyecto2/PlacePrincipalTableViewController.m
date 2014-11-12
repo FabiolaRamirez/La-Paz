@@ -22,6 +22,7 @@
     JGProgressHUD *HUD;
     JGProgressHUD *HUD2;
     JGProgressHUD *HUD3;
+    JGProgressHUD *HUD4;
 }
 
 
@@ -47,7 +48,8 @@
      codigosLugaresArray = [[NSMutableArray alloc] init];
       placesArray = [[NSMutableArray alloc] init];
 
-
+    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = @"Ingresando...";
     
 }
 
@@ -318,6 +320,7 @@
     NSLog(@"lugar %f",placeGeoPoint.latitude);
     NSLog(@"%f",placeGeoPoint.longitude);
     
+      [HUD showInView:self.view];
     // obtener ubicacion del usuario
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *userGeoPoint, NSError *error) {
         if (!error) {
@@ -336,6 +339,7 @@
                 [self getConquistasToCurrentUser];
                 
             } else {
+                [HUD dismissAnimated:YES];
                 // Alerta donde no se puede conquistar porque esta fuera de rango
                 [self showErrorOutHUD];
             
@@ -343,6 +347,8 @@
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");
+            [HUD dismissAnimated:YES];
+            [self showErrorInternetHUD];
         }
     }];
     
@@ -418,11 +424,13 @@
                 }
             }
             if (sw==1) {
+                [HUD dismissAnimated:YES];
                 //Alerta donde ya conquisto ese lugar
                 [self showErrorHUD];
                 
             }
             else{
+                [HUD dismissAnimated:YES];
                 //Alerta donde la conquista fue exitosa
                 [self showSuccessHUD];
                 [self saveToParseConquista];
@@ -594,7 +602,18 @@
     [HUD3 dismissAfterDelay:2.0];
 }
 
-
+- (void)showErrorInternetHUD {
+    JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
+    
+    HUD4.textLabel.text = @"Revise su conexión";
+    HUD4.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+    
+    HUD4.square = YES;
+    
+    [HUD4 showInView:self.navigationController.view];
+    
+    [HUD4 dismissAfterDelay:2.0];
+}
 
 
 #pragma mark - lo que hice yo daniel

@@ -38,19 +38,18 @@
     
     codigosLugaresArray = [[NSMutableArray alloc] init];
     placesArray = [[NSArray alloc] init];
-
-
+    
+    
     [self setCurrentUser];
-    
-    
-
     
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"se ejecuta cada rato");
     
-    [self getConquistasToCurrentUser];
+    placesArray = [UtilParse getConquistasToCurrentUser];
+    NSLog(@"NUMERO DE %i", (int)[placesArray count]);
+    [self.tableView reloadData];
 }
 
 
@@ -62,8 +61,7 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 
@@ -75,7 +73,7 @@
     } else if (section == 1) {
         return [placesArray count];
     }
-    return 1;
+    return 0;
 }
 
 
@@ -90,16 +88,27 @@
         if (indexPath.row == 0) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"fotoCell" forIndexPath:indexPath];
             
-            UILabel * titleLabel = (UILabel *)[cell viewWithTag:1];
+            
             UILabel * nameLabel = (UILabel *)[cell viewWithTag:2];
             UILabel * descriptionLabel = (UILabel *)[cell viewWithTag:3];
             UIImageView * fotoUserImageView = (UIImageView *)[cell viewWithTag:4];
             
-            
             nameLabel.text =user.username;
             nameLabel.textColor = [UIColor primaryDarkColor];
-          
-           
+            descriptionLabel.text=user[@"description"];
+            //pa inagen de usuario
+            PFFile *imageFile=[user objectForKey:@"imageUser"];
+            
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if(!error){
+                    fotoUserImageView.image=[UIImage imageWithData:data];
+                    NSLog(@"entra!!");
+                }
+                else{
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+                
+            }];
             return cell;
             
         } else {
@@ -108,23 +117,23 @@
         }
         
         
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 1) { // Lista de lugares conquistados
         // section dinamica
         ConquerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conquerCell"];
         
         if (cell == nil) {
             cell = [ConquerCell conquerCell];
             
-            PFObject *placeDetail=[placesArray objectAtIndex:indexPath.row];
-            cell.titleLabel.text=placeDetail[@"name"];
-            cell.directionLabel.text=placeDetail[@"address"];
+            PFObject *placeDetail = [placesArray objectAtIndex:indexPath.row];
+            cell.titleLabel.text = placeDetail[@"name"];
+            cell.directionLabel.text = placeDetail[@"address"];
             
             //para obtener imagen
-            PFFile *imageFile=[placeDetail objectForKey:@"imageFile"];
+            PFFile *imageFile = [placeDetail objectForKey:@"imageFile"];
             
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if(!error){
-                    cell.placeImageView.image=[UIImage imageWithData:data];
+                    cell.placeImageView.image = [UIImage imageWithData:data];
                     NSLog(@"entra!!");
                 }
                 else{
@@ -132,7 +141,7 @@
                 }
                 
             }];
-                    }
+        }
         return cell;
     }
     return nil;
@@ -256,80 +265,6 @@
         // show the signup or login screen
         NSLog(@"No hay usuario error raro");
     }
-}
-
-
-
-
-- (void) getConquistasToCurrentUser {
-    NSLog(@"Se ejecuta getConquistasToCurrentUser");
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        // do stuff with the user
-    
-        PFQuery *query = [PFQuery queryWithClassName:@"Conquista"];
-        [query whereKey:@"codigo_user" equalTo:currentUser.objectId];
-        
-        //[query orderByAscending:@"Tipo"];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                // The find succeeded.
-                NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-        
-                NSArray *conquistasArray = objects;
-                for (PFObject *conquista in conquistasArray) {
-                    [codigosLugaresArray addObject:conquista[@"codigo_place"]];
-                }
-                
-                [self getPlacesFromTheirCodes];
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-            
-        }];
-        
-        
-        
-    } else {
-        // show the signup or login screen
-    }
-}
-
-
-
-
-
-
-- (void) getPlacesFromTheirCodes {
-        NSLog(@"Se ejecuta getPlacesFromTheirCodes");
-    PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    [query whereKey:@"objectId" containedIn:codigosLugaresArray];
-    
-    //[query orderByAscending:@"Tipo"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-            
-            // funciona
-            
-            placesArray = objects;
-            
-            // REFRESCAR LA TABLA
-            
-            [self.tableView reloadData];
-            
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
 }
 
 

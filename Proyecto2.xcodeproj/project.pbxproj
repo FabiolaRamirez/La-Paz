@@ -29,6 +29,7 @@
 		204D4DAC19B69503000861D9 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D4DAB19B69503000861D9 /* RegisterViewController.m */; };
 		204D4DAF19B6A2D5000861D9 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204D4DAE19B6A2D5000861D9 /* LogInViewController.m */; };
 		2056C35919C66A8100FB2CE1 /* UserPerfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2056C35819C66A8100FB2CE1 /* UserPerfilViewController.m */; };
+		20590D3A1A12C7810073CC4E /* UtilParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 20590D391A12C7810073CC4E /* UtilParse.m */; };
 		2062DEF3198713B60035F5A0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2062DEF2198713B60035F5A0 /* Parse.framework */; };
 		2062DEF5198713F70035F5A0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2062DEF4198713F70035F5A0 /* AudioToolbox.framework */; };
 		2062DEF7198714040035F5A0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2062DEF6198714040035F5A0 /* CFNetwork.framework */; };
@@ -147,6 +148,8 @@
 		204D4DAE19B6A2D5000861D9 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		2056C35719C66A8000FB2CE1 /* UserPerfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPerfilViewController.h; sourceTree = "<group>"; };
 		2056C35819C66A8100FB2CE1 /* UserPerfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPerfilViewController.m; sourceTree = "<group>"; };
+		20590D381A12C7810073CC4E /* UtilParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilParse.h; sourceTree = "<group>"; };
+		20590D391A12C7810073CC4E /* UtilParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilParse.m; sourceTree = "<group>"; };
 		2062DEF2198713B60035F5A0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		2062DEF4198713F70035F5A0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2062DEF6198714040035F5A0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -300,6 +303,8 @@
 				2038A9E619F31477008FB445 /* UIColor+LaPaz.m */,
 				2038A9EA19F3240D008FB445 /* Util.h */,
 				2038A9EB19F3240D008FB445 /* Util.m */,
+				20590D381A12C7810073CC4E /* UtilParse.h */,
+				20590D391A12C7810073CC4E /* UtilParse.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 			files = (
 				20C7951F19B3D6C900A1335E /* NombreCell.m in Sources */,
 				2067F49419DB8C3B009FD1D9 /* ProfileTableViewController.m in Sources */,
+				20590D3A1A12C7810073CC4E /* UtilParse.m in Sources */,
 				20652AD819F1E5B80042BD42 /* JGProgressHUDFadeAnimation.m in Sources */,
 				20AC69361990318B0008E4B3 /* Annotation.m in Sources */,
 				20AC698F19941B820008E4B3 /* PlacesCategoryTableViewController.m in Sources */,

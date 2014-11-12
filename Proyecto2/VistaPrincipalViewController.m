@@ -59,6 +59,9 @@
                 miAnotacion.title = nombre;
                 miAnotacion.subtitle = descripcion;
                 //miAnotacion.subtitle=(NSString *)place[@"name"];
+                MKCoordinateRegion miRegion1= MKCoordinateRegionMakeWithDistance(Localizacion, 9000, 9000);
+                //Enviar vistadel mapa
+                [self.VistaMapa setRegion:miRegion1 animated:YES];
                 [VectorAnotaciones addObject:miAnotacion];
                 [self.VistaMapa addAnnotations:VectorAnotaciones];
                 NSLog(@" Latitud: %f", latitude1);

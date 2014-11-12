@@ -13,5 +13,12 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    // aqui se ponen las importaciones que quieres en todas tus clases
+    #import <Parse/Parse.h>
+    #import "UIColor+LaPaz.h"
+    #import "Util.h"
+    #import "UtilParse.h"
+
 #endif
 

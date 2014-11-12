@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     personasVector=[[NSArray alloc] init];
     
     [self queryGetNumberConquerDescending];
@@ -59,9 +60,9 @@
     PFObject *object = [personasVector objectAtIndex:indexPath.row];
     
     nameLabel.text = object[@"username"];
-    
+    countConquerLabel.text=[NSString stringWithFormat:@"%@",object[@"nroConquistas"]];
     //para obtener imagen
-    PFFile *imageFile=[object objectForKey:@"imageFile"];
+    PFFile *imageFile=[object objectForKey:@"imageUser"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if(!error){
@@ -126,7 +127,7 @@
     
     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    [query orderByDescending:@"contConquistas"];
+    [query orderByDescending:@"nroConquistas"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {

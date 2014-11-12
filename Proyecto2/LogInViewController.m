@@ -82,10 +82,10 @@ UIGestureRecognizer *tapper;
     [self.passwordTextField resignFirstResponder];
     
     
-    NSString * usename=self.usernameTextField.text;
+    NSString * username=self.usernameTextField.text;
     NSString * password=self.passwordTextField.text;
     
-    if (usename.length>0&&password.length>0) {
+    if (username.length>0&&password.length>0) {
         
         [HUD showInView:self.view];
         
@@ -93,7 +93,7 @@ UIGestureRecognizer *tapper;
         NSLog(@"ok");
         //Por if true verifica por correo de usuario
         PFQuery *query = [PFUser query];
-        [query whereKey:@"email" equalTo:usename];
+        [query whereKey:@"email" equalTo:username];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
             
             if (!error) {
@@ -128,7 +128,7 @@ UIGestureRecognizer *tapper;
                     
                 }else{
                     //por else verifica por nombre de usuario
-                    [PFUser logInWithUsernameInBackground: usename password:password block:^(PFUser* user, NSError* error){
+                    [PFUser logInWithUsernameInBackground: username password:password block:^(PFUser* user, NSError* error){
                         
                         [HUD dismissAnimated:YES];
                         
@@ -273,7 +273,7 @@ UIGestureRecognizer *tapper;
 - (void)showErrorHUD {
     JGProgressHUD *HUD2 = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleLight];
     
-    HUD2.textLabel.text = @"Error!";
+    HUD2.textLabel.text = @"Revise su conexión";
     HUD2.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
     
     HUD2.square = YES;
