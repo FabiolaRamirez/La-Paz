@@ -102,7 +102,7 @@
     } else if(indexPath.row==1){
         return 88;
     } else if(indexPath.row==2){
-        return 44;
+        return 66;
     }
     
     return 44.0f; //cell for comments, in reality the height has to be adjustable

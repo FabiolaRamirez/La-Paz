@@ -48,13 +48,13 @@
 }
 
 
-
-- (IBAction)goCategories:(UIBarButtonItem *)sender {
-    
+- (IBAction)GoCategories:(UIBarButtonItem *)sender {
     SectionPlaceCollectionViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"sectionPlaceCollectionViewController"];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }
+
+
 
 
 

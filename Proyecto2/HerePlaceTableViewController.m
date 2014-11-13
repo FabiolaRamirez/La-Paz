@@ -168,18 +168,17 @@
     
     
     // push para continuar
-    PlacePrincipalTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placePrincipalTableViewController"];
-    viewController.lugar = p;
+    /* antes era asi
+     PlacePrincipalTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placePrincipalTableViewController"];
+     viewController.lugar = p;
+     [self.navigationController pushViewController:viewController animated:YES];
+     */
     
+    PlaceMainTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placeMainTableViewController"];
+    viewController.lugar = p;
     [self.navigationController pushViewController:viewController animated:YES];
     
-    
-    // modal es para salir de contexto
-    
-    /*
-     UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placeViewController"];
-     [self presentViewController:viewController animated:YES completion:nil];
-     */
+
 }
 /*
  // Override to support conditional editing of the table view.

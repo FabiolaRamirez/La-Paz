@@ -11,6 +11,7 @@
 #import "PlacePrincipalTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Util.h"
+#import "PlaceMainTableViewController.h"
 @interface PlacesTableViewController : UITableViewController
 
 @property (nonatomic,strong) PFObject *categoriaObject;

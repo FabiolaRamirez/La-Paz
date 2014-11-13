@@ -198,20 +198,11 @@
     
     PFObject *p = [places objectAtIndex:indexPath.row];
     
-    
-    // push para continuar
-    PlacePrincipalTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placePrincipalTableViewController"];
+    PlaceMainTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placeMainTableViewController"];
     viewController.lugar = p;
-    
     [self.navigationController pushViewController:viewController animated:YES];
     
-    
-    // modal es para salir de contexto
-    
-    /*
-     UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placeViewController"];
-     [self presentViewController:viewController animated:YES completion:nil];
-     */
+
 }
 
 

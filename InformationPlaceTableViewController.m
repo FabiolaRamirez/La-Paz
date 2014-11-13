@@ -43,7 +43,7 @@
     rowInSectionArray1=[[NSMutableArray alloc] init];
     //rowInSectionArray2=[[NSMutableArray alloc] initWithObjects:@"sdfdf", nil];
     
-    NSString *cod = self.ObjetoA[@"placeId"];
+    NSString *cod = self.ObjetoA.objectId;
     NSLog(@"el id es: %@",cod);
     
     NSString *nom=self.ObjetoA[@"name"];
@@ -51,7 +51,7 @@
     self.navigationItem.title = nom;
     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"Hora"];
-    [query whereKey:@"placeId" equalTo:cod];
+    [query whereKey:@"objectId" equalTo:cod];
 
     //[query orderByAscending:@"Tipo"];
     
@@ -187,7 +187,7 @@
         } else if(indexPath.row==1){
             return 88;
         } else if(indexPath.row==2){
-            return 44;
+            return 66;
         }
         return 44;
     }

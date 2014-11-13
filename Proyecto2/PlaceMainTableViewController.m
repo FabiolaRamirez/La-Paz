@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fotoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *tituloLabel;
 @property (weak, nonatomic) IBOutlet UILabel *conquistarLabel;
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *texto1MapLabel;
 @property (weak, nonatomic) IBOutlet UILabel *texto2MapLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
@@ -206,7 +206,13 @@
         
     } else if(indexPath.row == 2) {
         
+        
     } else if(indexPath.row == 3) {
+        MapViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapViewController"];
+        //PFObject *p = [objectArray objectAtIndex:indexPath.row];
+        viewController.Object = _lugar;
+        
+        [self.navigationController pushViewController:viewController animated:YES];
         
     } else if(indexPath.row == 4) {
         NSString* cod = self.lugar[@"code"];

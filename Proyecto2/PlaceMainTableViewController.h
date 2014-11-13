@@ -11,7 +11,9 @@
 #import <MapKit/MapKit.h>
 #import "MapViewController.h"
 #import "Annotation.h"
-
+#import "InformationPlace2TableViewController.h"
+#import "InformationPlaceTableViewController.h"
+#import "MapViewController.h"
 @interface PlaceMainTableViewController : UITableViewController <MKMapViewDelegate>
 
 @property (nonatomic,strong) PFObject *lugar;
