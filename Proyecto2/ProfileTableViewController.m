@@ -14,7 +14,7 @@
 @interface ProfileTableViewController () {
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
-    NSArray *fechaArray;
+    NSArray *fechasArray;
     PFUser *user;
     
     
@@ -38,6 +38,7 @@
     
     codigosLugaresArray = [[NSMutableArray alloc] init];
     placesArray = [[NSArray alloc] init];
+    fechasArray = [[NSArray alloc] init];
     
     [self setCurrentUser];
 }
@@ -58,6 +59,29 @@
 #pragma mark - Querys
 
 /*- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
+ NSLog(@"Start getConqueredPlaces.");
+ 
+ PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
+ [query whereKey:@"user" equalTo:[PFUser currentUser]];
+ [query includeKey:@"place"]; // es para que el query saque todos los datos de place
+ [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+ if (!error) {
+ NSLog(@"End getConqueredPlaces. Nro. Places: %i", (int)[objects count]);
+ NSMutableArray *places = [[NSMutableArray alloc] init];
+ for (PFObject *conquest in objects) {
+ PFObject *place = conquest[@"place"];
+ [places addObject:place];
+ }
+ // Update data
+ placesArray = places;
+ [self.tableView reloadData];
+ } else {
+ NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
+ }
+ }];
+ }*/
+
+- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
     NSLog(@"Start getConqueredPlaces.");
     
     PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
@@ -67,47 +91,25 @@
         if (!error) {
             NSLog(@"End getConqueredPlaces. Nro. Places: %i", (int)[objects count]);
             NSMutableArray *places = [[NSMutableArray alloc] init];
+            NSMutableArray *fechas = [[NSMutableArray alloc] init]; // este array es temporal, creado aqui
             for (PFObject *conquest in objects) {
                 PFObject *place = conquest[@"place"];
                 [places addObject:place];
+                NSDate *date = conquest[@"date"];
+                NSLog(@"imprimiendo date:%@",[self date:date]);
+                [fechas addObject:date];
+                
+                
+                // imprimi el date haber
             }
             // Update data
             placesArray = places;
+            fechasArray = fechas; // reemplazamos al array global, osea exactamente lo que hicimos con places, osea son 2 arrays uno temporal y otro global
             [self.tableView reloadData];
         } else {
             NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
         }
     }];
-}*/
-
-- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
-    NSLog(@"Start getConqueredPlaces.");
-    
-     PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-    [query includeKey:@"place"]; // es para que el query saque todos los datos de place
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSLog(@"End getConqueredPlaces. Nro. Places: %i", (int)[objects count]);
-        NSMutableArray *places = [[NSMutableArray alloc] init];
-            NSMutableArray *fechaArray = [[NSMutableArray alloc] init];
-        for (PFObject *conquest in objects) {
-            PFObject *place = conquest[@"place"];
-            [places addObject:place];
-                NSDate *date = conquest[@"date"];
-            NSLog(@"imprimiendo date:%@",[self date:date]);
-                [fechaArray addObject:date];
-                
-            
-            // imprimi el date haber
-            }
-            // Update data
-            placesArray = places;
-            [self.tableView reloadData];
-            } else {
-            NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
-           }
-        }];
 }
 - (NSString *)date:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -160,7 +162,7 @@
                 if(!error){
                     fotoUserImageView.layer.masksToBounds=YES;
                     fotoUserImageView.layer.cornerRadius=30;
-
+                    
                     fotoUserImageView.image=[UIImage imageWithData:data];
                     NSLog(@"entra!!");
                 }
@@ -183,21 +185,21 @@
         
         if (cell == nil) {
             cell = [ConquerCell conquerCell];
-            NSDate *date = [fechaArray objectAtIndex:indexPath.row];
+            NSDate *date = [fechasArray objectAtIndex:indexPath.row];
             NSLog(@"imprimiendo date:%@",[self date:date]);
-
+            
             PFObject *placeDetail = [placesArray objectAtIndex:indexPath.row];
             cell.dateLabel.text=[self date:date];
             cell.titleLabel.text = placeDetail[@"name"];
             cell.directionLabel.text = placeDetail[@"address"];
-                        //para obtener imagen
+            //para obtener imagen
             PFFile *imageFile = [placeDetail objectForKey:@"imageFile"];
             
             [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                 if(!error){
-                cell.placeImageView.image = [UIImage imageWithData:data];
+                    cell.placeImageView.image = [UIImage imageWithData:data];
                     
-                   
+                    
                     NSLog(@"entra!!");
                 }
                 else{
