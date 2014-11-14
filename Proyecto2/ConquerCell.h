@@ -12,6 +12,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *directionLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *placeImageView;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 + (ConquerCell*) conquerCell;
 @end

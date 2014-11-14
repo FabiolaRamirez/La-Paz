@@ -14,6 +14,7 @@
 @interface ProfileTableViewController () {
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
+    NSArray *fechaArray;
     PFUser *user;
     
     
@@ -56,7 +57,7 @@
 
 #pragma mark - Querys
 
-- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
+/*- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
     NSLog(@"Start getConqueredPlaces.");
     
     PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
@@ -77,10 +78,42 @@
             NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
         }
     }];
+}*/
+
+- (void) getConqueredPlaces { // Se redujo a este metodo sencillo
+    NSLog(@"Start getConqueredPlaces.");
+    
+     PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query includeKey:@"place"]; // es para que el query saque todos los datos de place
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"End getConqueredPlaces. Nro. Places: %i", (int)[objects count]);
+        NSMutableArray *places = [[NSMutableArray alloc] init];
+            NSMutableArray *fechaArray = [[NSMutableArray alloc] init];
+        for (PFObject *conquest in objects) {
+            PFObject *place = conquest[@"place"];
+            [places addObject:place];
+                NSDate *date = conquest[@"date"];
+            NSLog(@"imprimiendo date:%@",[self date:date]);
+                [fechaArray addObject:date];
+                
+            
+            // imprimi el date haber
+            }
+            // Update data
+            placesArray = places;
+            [self.tableView reloadData];
+            } else {
+            NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
+           }
+        }];
 }
-
-
-
+- (NSString *)date:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"ddMMMyyyy"];
+    return [[dateFormatter stringFromDate:date] uppercaseString];
+}
 
 
 #pragma mark - Table view data source
@@ -150,8 +183,11 @@
         
         if (cell == nil) {
             cell = [ConquerCell conquerCell];
-            
+            NSDate *date = [fechaArray objectAtIndex:indexPath.row];
+            NSLog(@"imprimiendo date:%@",[self date:date]);
+
             PFObject *placeDetail = [placesArray objectAtIndex:indexPath.row];
+            cell.dateLabel.text=[self date:date];
             cell.titleLabel.text = placeDetail[@"name"];
             cell.directionLabel.text = placeDetail[@"address"];
                         //para obtener imagen
