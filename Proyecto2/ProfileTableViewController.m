@@ -15,7 +15,7 @@
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
     NSArray *fechasArray;
-    NSMutableArray *medalsArray;
+  
     PFUser *user;
     
     
@@ -38,11 +38,10 @@
     [super viewDidLoad];
     
     codigosLugaresArray = [[NSMutableArray alloc] init];
-    placesArray = [[NSArray alloc] init];
+        placesArray = [[NSArray alloc] init];
     fechasArray = [[NSArray alloc] init];
     
     [self setCurrentUser];
-    [self miMetodo];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -338,59 +337,6 @@
     }
 }
 
-- (void) miMetodo {
-    NSLog(@"Start miMetodo.");
-    PFObject *gana = [PFObject objectWithClassName:@"Gana"];
-    [gana setObject:[PFUser currentUser]  forKey:@"user"];
-    PFObject *medalla = [PFObject objectWithClassName:@"Medalla"];
-    
-    [gana setObject:medalla forKey:@"medalla"];
-    [gana setObject:[NSDate date] forKey:@"date"];
-    [gana saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        
-        if(succeeded) {
-            NSLog(@"se guardo exitosamente.");
-            
-            
-        } else {
-            NSLog(@"Error (miMetodo): %@", error);
-        }
-    }];
-}
-
-/*
-- (void) getMedallsUser {
-    NSLog(@"Start getMedallsUser.");
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Gana"];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
-    [query includeKey:@"medalla"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSLog(@"End getMedallsUser. Nro. medals: %i", (int)[objects count]);
-            NSMutableArray *medalsArray = [[NSMutableArray alloc] init];
-            NSMutableArray *fechas = [[NSMutableArray alloc] init]; // este array es temporal, creado aqui
-            for (PFObject *gana in objects) {
-                PFObject *gana = gana[@"place"];
-                [places addObject:gana];
-                NSDate *date = gana[@"date"];
-                NSLog(@"imprimiendo date:%@",[self date:date]);
-                [fechas addObject:date];
-                
-                
-                // imprimi el date haber
-            }
-            // Update data
-            placesArray = places;
-            fechasArray = fechas; // reemplazamos al array global, osea exactamente lo que hicimos con places, osea son 2 arrays uno temporal y otro global
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
-*/
 
 
 @end

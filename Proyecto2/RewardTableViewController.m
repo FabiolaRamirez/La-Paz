@@ -12,6 +12,9 @@
     //medallas
     NSMutableArray *codigosMedallasArray;
     NSArray *medallasArray;
+    NSArray *fechasArray;
+    NSMutableArray *medalsArray;
+    PFUser *user;
 }
 
 @end
@@ -26,7 +29,7 @@
     medallasArray = [[NSArray alloc] init];
     
     //medallas
-    [self getMedallasToCurrentUser];
+    
     
 }
 
@@ -127,72 +130,60 @@
 }
 
 
--(void) getMedallasToCurrentUser{
-    NSLog(@"Se ejecuta getConquistasToCurrentUser");
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        // do stuff with the user
-        
-        PFQuery *query = [PFQuery queryWithClassName:@"Medallero"];
-        [query whereKey:@"codigo_user" equalTo:currentUser.objectId];
-        
-        //[query orderByAscending:@"Tipo"];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                // The find succeeded.
-                NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-                
-                NSArray *medalleroArray = objects;
-                for (PFObject *conquista in medalleroArray) {
-                    [codigosMedallasArray addObject:conquista[@"codigo_medall"]];
-                }
-                
-                [self getMedallsFromTheirCodes];
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-            
-        }];
-        
-        
-        
-    } else {
-        // show the signup or login screen
-    }
-}
-
--(void) getMedallsFromTheirCodes{
-    NSLog(@"Se ejecuta getMedallsFromTheirCodes");
-    PFQuery *query = [PFQuery queryWithClassName:@"Medalla"];
-    [query whereKey:@"objectId" containedIn:codigosMedallasArray];
+- (void) miMetodo {
+    NSLog(@"Start miMetodo.");
+    PFObject *gana = [PFObject objectWithClassName:@"Gana"];
+    [gana setObject:[PFUser currentUser]  forKey:@"user"];
+    PFObject *medalla = [PFObject objectWithClassName:@"Medalla"];
     
-    //[query orderByAscending:@"Tipo"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-            
-            // funciona
-            
-            medallasArray = objects;
-            
-            // REFRESCAR LA TABLA
-            
-            [self.tableView reloadData];
+    [gana setObject:medalla forKey:@"medalla"];
+    [gana setObject:[NSDate date] forKey:@"date"];
+    [gana saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if(succeeded) {
+            NSLog(@"se guardo exitosamente.");
             
             
         } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            NSLog(@"Error (miMetodo): %@", error);
         }
-        
     }];
 }
 
+
+- (void) getMedallsUser {
+    NSLog(@"Start getMedallsUser.");
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Gana"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query includeKey:@"medalla"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"End getMedallsUser. Nro. medals: %i", (int)[objects count]);
+            NSMutableArray *medals = [[NSMutableArray alloc] init];
+            NSMutableArray *fechas = [[NSMutableArray alloc] init];
+            for (PFObject *gana in objects) {
+                PFObject *medalla = gana[@"medalla"];
+                [medals addObject:medalla];
+                NSDate *date = gana[@"date"];
+                NSLog(@"imprimiendo date:%@",[self date:date]);
+                [fechas addObject:date];
+                
+            }
+            medalsArray = medals;
+            fechasArray = fechas;
+             [self.tableView reloadData];
+        } else {
+            NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+- (NSString *)date:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"ddMMMyyyy"];
+    return [[dateFormatter stringFromDate:date] uppercaseString];
+}
 
 
 @end

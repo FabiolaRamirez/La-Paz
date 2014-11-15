@@ -64,8 +64,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-     UILabel * nombreLabel = (UILabel *)[cell viewWithTag:1];
-    UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:2];
+     UILabel * nombreLabel = (UILabel *)[cell viewWithTag:2];
+    UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:1];
    
 
     PFObject *medal = [medallsArray objectAtIndex:indexPath.row];

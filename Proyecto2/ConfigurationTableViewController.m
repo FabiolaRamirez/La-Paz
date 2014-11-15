@@ -67,11 +67,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        UILabel * Label = (UILabel *)[cell viewWithTag:1];
+        Label.text=[perfilArray objectAtIndex:indexPath.row];
+        return cell;
+    }
+    if (indexPath.section == 1) {
+        UILabel * Label = (UILabel *)[cell viewWithTag:1];
+        Label.text=[InformacionArray objectAtIndex:indexPath.row];
+        return cell;
+    }
     
-    UILabel * Label = (UILabel *)[cell viewWithTag:1];
-    Label.text=[perfilArray objectAtIndex:indexPath.row];
     
-    return cell;
+    return nil;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

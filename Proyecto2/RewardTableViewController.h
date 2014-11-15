@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 #import "ProfileTableViewController.h"
 @interface RewardTableViewController : UITableViewController
-
+@property (nonatomic,strong) PFObject *object;
 @end
