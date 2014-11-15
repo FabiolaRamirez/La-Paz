@@ -23,7 +23,7 @@
     
     personasVector=[[NSArray alloc] init];
     
-    [self queryGetNumberConquerDescending];
+    [self getRankingFromParse];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,26 +48,23 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     
-    UILabel * titleLabel = (UILabel *)[cell viewWithTag:1];
-    UILabel * nameLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel * nameLabel = (UILabel *)[cell viewWithTag:1];
     UILabel * countConquerLabel = (UILabel *)[cell viewWithTag:3];
     UILabel * CountMedallLabel = (UILabel *)[cell viewWithTag:4];
-    UIImageView * UserImageView = (UIImageView *)[cell viewWithTag:5];
-    UIImageView * medall1ImageView = (UIImageView *)[cell viewWithTag:6];
-    UIImageView * medall2mageView = (UIImageView *)[cell viewWithTag:7];
-    UIImageView * medall3ImageView = (UIImageView *)[cell viewWithTag:8];
+    UIImageView * UserImageView = (UIImageView *)[cell viewWithTag:2];
+    
     
     PFObject *object = [personasVector objectAtIndex:indexPath.row];
     
     nameLabel.text = object[@"username"];
-    countConquerLabel.text=[NSString stringWithFormat:@"%@",object[@"nroConquistas"]];
+    countConquerLabel.text=[NSString stringWithFormat:@"%@",object[@"ranking"]];
     //para obtener imagen
     PFFile *imageFile=[object objectForKey:@"imageUser"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if(!error){
             UserImageView.layer.masksToBounds=YES;
-            UserImageView.layer.cornerRadius=34;
+            UserImageView.layer.cornerRadius=23;
             UserImageView.image=[UIImage imageWithData:data];
             NSLog(@"entra!!");
         }
@@ -125,26 +122,25 @@
     // Pass the selected object to the new view controller.
 }
 */
--(void) queryGetNumberConquerDescending{
-    
-    //Query
+
+
+- (void) getRankingFromParse {
+    NSLog(@"getRankingFromParse");
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
-    [query orderByDescending:@"nroConquistas"];
-    
+    [query orderByDescending:@"ranking"];
+    query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %i usuarios.", (int)objects.count);
+            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
             
             personasVector = objects;
             //actualizar tabla con datos
             [self.tableView reloadData];
-           
             
         } else {
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
-            
         }
         
     }];

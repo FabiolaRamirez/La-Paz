@@ -14,6 +14,7 @@
     NSArray * placesArray;
     UIRefreshControl *refreshControl;
 }
+@property (strong, nonatomic) IBOutlet UILabel *counterLabel;
 
 @end
 
@@ -38,6 +39,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self configRefreshControl];
+    //para contar el numero de lugares conquistados
+    //[self getNroUsuariosQueConquistaronEsteLugar];
     
 }
 
@@ -294,5 +297,19 @@
     [self getPlacesFromParse];
 }
 
-
+/*- (void) getNroUsuariosQueConquistaronEsteLugar {
+    NSLog(@"Start getNroUsuariosQueConquistaronEsteLugar.");
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
+    [query whereKey:@"place" equalTo:self.place];
+    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        NSLog(@"End getNroUsuariosQueConquistaronEsteLugar.");
+        
+        if (!error) {
+            self.counterLabel.text = [NSString stringWithFormat:@"%i conquistas", count];
+        } else {
+            NSLog(@"Error (getNroUsuariosQueConquistaronEsteLugar): %@", error);
+        }
+    }];
+}*/
 @end

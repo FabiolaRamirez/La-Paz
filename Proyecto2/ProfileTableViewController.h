@@ -11,6 +11,7 @@
 #import "PlacePrincipalTableViewController.h"
 #import "ConfigurationTableViewController.h"
 #import "RewardTableViewController.h"
+#import "PlaceMainTableViewController.h"
 @interface ProfileTableViewController : UITableViewController
 
 @property (nonatomic,strong) PFObject *object;

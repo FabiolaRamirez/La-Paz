@@ -9,7 +9,10 @@
 #import "ConfigurationTableViewController.h"
 
 @interface ConfigurationTableViewController ()
-
+{
+    NSArray* perfilArray;
+    NSArray* InformacionArray;
+}
 @end
 
 @implementation ConfigurationTableViewController
@@ -27,11 +30,8 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    perfilArray=[[NSArray alloc]initWithObjects:@"Perfil",@"Cerrar Seción", nil];
+    InformacionArray=[[NSArray alloc] initWithObjects:@"Acerca de La Paz",@"Apoyo",@"Agradesimientos", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,28 +44,45 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if (section==0) {
+        return [perfilArray count];
+    }
+    if (section==1) {
+        return [InformacionArray count];
+    }
+    
+    
     return 0;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    UILabel * Label = (UILabel *)[cell viewWithTag:1];
+    Label.text=[perfilArray objectAtIndex:indexPath.row];
     
     return cell;
 }
-*/
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section==0) {
+        return @"Perfil";
+    }
+    if (section==1) {
+        return @"Apoyo";
+    }
+    return @"";
+}
 
 /*
 // Override to support conditional editing of the table view.

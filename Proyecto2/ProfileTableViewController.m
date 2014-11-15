@@ -15,6 +15,7 @@
     NSMutableArray *codigosLugaresArray;
     NSArray *placesArray;
     NSArray *fechasArray;
+    NSMutableArray *medalsArray;
     PFUser *user;
     
     
@@ -41,6 +42,7 @@
     fechasArray = [[NSArray alloc] init];
     
     [self setCurrentUser];
+    [self miMetodo];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,6 +113,10 @@
         }
     }];
 }
+
+
+
+
 - (NSString *)date:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"ddMMMyyyy"];
@@ -220,7 +226,7 @@
             return 66;
         }
     } else if(indexPath.section==1){
-        return 66;
+        return 99;
     }
     return 44; //cell for comments, in reality the height has to be adjustable
 }
@@ -228,13 +234,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"SE PRESIONO %i", (int)indexPath.row);
     
-    PFObject *objeto = [placesArray objectAtIndex:indexPath.row];
     
-    // push para continuar
-    PlacePrincipalTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placePrincipalTableViewController"];
-    tableViewController.lugar = objeto;
+    PFObject *p = [placesArray objectAtIndex:indexPath.row];
     
-    [self.navigationController pushViewController:tableViewController animated:YES];
+    PlaceMainTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placeMainTableViewController"];
+    viewController.lugar = p;
+    [self.navigationController pushViewController:viewController animated:YES];
     
 }
 
@@ -333,6 +338,59 @@
     }
 }
 
+- (void) miMetodo {
+    NSLog(@"Start miMetodo.");
+    PFObject *gana = [PFObject objectWithClassName:@"Gana"];
+    [gana setObject:[PFUser currentUser]  forKey:@"user"];
+    PFObject *medalla = [PFObject objectWithClassName:@"Medalla"];
+    
+    [gana setObject:medalla forKey:@"medalla"];
+    [gana setObject:[NSDate date] forKey:@"date"];
+    [gana saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if(succeeded) {
+            NSLog(@"se guardo exitosamente.");
+            
+            
+        } else {
+            NSLog(@"Error (miMetodo): %@", error);
+        }
+    }];
+}
+
+/*
+- (void) getMedallsUser {
+    NSLog(@"Start getMedallsUser.");
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Gana"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query includeKey:@"medalla"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSLog(@"End getMedallsUser. Nro. medals: %i", (int)[objects count]);
+            NSMutableArray *medalsArray = [[NSMutableArray alloc] init];
+            NSMutableArray *fechas = [[NSMutableArray alloc] init]; // este array es temporal, creado aqui
+            for (PFObject *gana in objects) {
+                PFObject *gana = gana[@"place"];
+                [places addObject:gana];
+                NSDate *date = gana[@"date"];
+                NSLog(@"imprimiendo date:%@",[self date:date]);
+                [fechas addObject:date];
+                
+                
+                // imprimi el date haber
+            }
+            // Update data
+            placesArray = places;
+            fechasArray = fechas; // reemplazamos al array global, osea exactamente lo que hicimos con places, osea son 2 arrays uno temporal y otro global
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"Error (getConqueredPlaces): %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+*/
 
 
 @end

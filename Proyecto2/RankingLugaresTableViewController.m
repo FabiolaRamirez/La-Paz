@@ -225,7 +225,7 @@
 
 - (void) getRanking1PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    [query orderByAscending:@"ranking_conquistas"];
+    [query orderByDescending:@"rank"];
     query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -247,7 +247,7 @@
 - (void) getRanking2PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
     [query orderByAscending:@"ranking_economico"];
-    query.limit = 2;
+    query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
@@ -267,8 +267,8 @@
 
 - (void) getRanking3PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    [query orderByAscending:@"ranking_recomendados"];
-    query.limit = 5;
+    [query orderByDescending:@"ranking_recomendados"];
+    query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
