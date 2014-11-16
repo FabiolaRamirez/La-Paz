@@ -67,12 +67,14 @@
      UILabel * tituloLabel = (UILabel *)[cell viewWithTag:1];
     UILabel * descripcionLabel = (UILabel *)[cell viewWithTag:2];
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
+     UILabel * ganadoLabel = (UILabel *)[cell viewWithTag:4];
    
 
     PFObject *medal = [medallsArray objectAtIndex:indexPath.row];
     
     tituloLabel.text = medal[@"name"];
     descripcionLabel.text = medal[@"description"];
+    ganadoLabel.text=@"Ganado";
     //para obtener imagen
     PFFile *imageFile=[medal objectForKey:@"image"];
     
@@ -143,7 +145,7 @@
 -(void) getPlacesFromParse{
     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"Medalla"];
-    //[query orderByAscending:@"name"];
+    [query orderByAscending:@"name"];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [refreshControl endRefreshing];
