@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PerfilConfigurationViewController.h"
+#import "AcercaDeViewController.h"
+#import "ApoyoViewController.h"
+#import "SeguridadPrivacidadViewController.h"
+#import "LoginViewController.h"
 @interface ConfigurationTableViewController : UITableViewController
 
 @end
