@@ -10,4 +10,6 @@
 #import <Parse/Parse.h>
 @interface MedalTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSArray *placesConqueredArray; // lugares conquistados
+
 @end

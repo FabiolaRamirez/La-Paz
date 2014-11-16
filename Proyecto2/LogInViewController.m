@@ -57,7 +57,34 @@ UIGestureRecognizer *tapper;
     HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     HUD.textLabel.text = @"Ingresando...";
     
+    
+    
+    //[self soloUnaVez]; // hacer solo una vez, osea ejecutar, comentar esta linea y ejecutar normalmente
 }
+
+- (void) soloUnaVez {
+    NSLog(@"soloUnaVez");
+    
+    PFObject *placeOne = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"jC63GBg11B"];
+    PFObject *placeTwo = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"nW4Vh3WJAN"];
+    //    PFObject *placeThre = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"mvhzm3AUTD"];
+    
+    PFObject *medalla= [PFObject objectWithoutDataWithClassName:@"Medalla" objectId:@"MwkebiiOO4"];
+    
+    PFRelation *relation = [medalla relationForKey:@"places"];
+    [relation addObject:placeOne];
+    [relation addObject:placeTwo];
+    //    [relation addObject:placeThre];
+    
+    [medalla saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        
+        if (succeeded) {
+            NSLog(@"Todo ok, solo una vez");
+        }
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

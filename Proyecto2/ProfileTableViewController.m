@@ -314,6 +314,7 @@
     NSLog(@"goMedallero");
     
     MedalTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"medalTableViewController"];
+    viewController.placesConqueredArray = placesArray;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self presentViewController:navigationController animated:YES completion:nil];
 }

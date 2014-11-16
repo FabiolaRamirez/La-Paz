@@ -8,9 +8,14 @@
 
 #import "MedalTableViewController.h"
 
-@interface MedalTableViewController (){
-    NSArray *medallsArray;
+@interface MedalTableViewController () <UIAlertViewDelegate> {
+    NSArray *medallsArray; // todas las medallas del mundo
+    NSArray *misMedallasArray; // mis medallas
+    
+    
     UIRefreshControl *refreshControl;
+    
+    PFObject *medallaPresionada;
 }
 
 @end
@@ -31,14 +36,17 @@
     [super viewDidLoad];
     
     medallsArray = [[NSMutableArray alloc] init];
-   
-    [self getPlacesFromParse];
+    misMedallasArray = [[NSMutableArray alloc] init];
+    
+    [self getMedallasFromParse];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self configRefreshControl];
     
-    }
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -49,101 +57,140 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [medallsArray count];
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-     UILabel * tituloLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel * tituloLabel = (UILabel *)[cell viewWithTag:1];
     UILabel * descripcionLabel = (UILabel *)[cell viewWithTag:2];
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
-     UILabel * ganadoLabel = (UILabel *)[cell viewWithTag:4];
-   
-
+    UILabel * ganadoLabel = (UILabel *)[cell viewWithTag:4];
+    
     PFObject *medal = [medallsArray objectAtIndex:indexPath.row];
+    
     
     tituloLabel.text = medal[@"name"];
     descripcionLabel.text = medal[@"description"];
-    ganadoLabel.text=@"Ganado";
+    ganadoLabel.text = [self isMyMedall:medal] ? @"Ganado" : @"";
     //para obtener imagen
-    PFFile *imageFile=[medal objectForKey:@"image"];
-    
+    PFFile *imageFile = [medal objectForKey:@"image"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if(!error){
             fotoImageView.image=[UIImage imageWithData:data];
-            NSLog(@"entra!!");
-        }
-        else{
+        } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
-        
     }];
-    
     return cell;
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+// verifica si es una de mis medallas
+- (BOOL) isMyMedall:(PFObject *) medalla {
+    for (PFObject *miMedalla in misMedallasArray) {
+        if ([miMedalla.objectId isEqualToString:medalla.objectId]) {
+            return YES;
+        }
+    }
+    return NO;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    medallaPresionada = [medallsArray objectAtIndex:indexPath.row];
+    if ([self isMyMedall:medallaPresionada]) {
+        // no hacemos nada
+    } else {
+        PFRelation *relation = [medallaPresionada relationForKey:@"places"];
+        PFQuery *query = [relation query];
+        
+        [Util showProgress:self.navigationController.view];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [Util hideProgress:self.navigationController.view];
+            
+            if (!error) {
+                NSLog(@"Successfully retrieved %i scores. (press cell)", (int)objects.count);
+                
+                [self validarSiConquisto:objects];
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+// validarSiConquisto
+- (void) validarSiConquisto: (NSArray *) placesRequisito {
+    
+    BOOL swSiGanoMedalla = placesRequisito.count > 0 ? YES : NO;
+    NSString *mensaje = @"Para ganar esta medalla te falta conquistar estos lugares:\n"; // armar el mensaje que se mostrara en el dialogo
+    
+    NSLog(@"validarSiConquisto %i", (int)placesRequisito.count);
+    for (PFObject *placeRequisito in placesRequisito) {
+        NSLog(@"Place requisitio: %@", placeRequisito);
+        int sw = NO;
+        for (PFObject *placeConquistado in self.placesConqueredArray) {
+            if ([placeConquistado.objectId isEqualToString:placeRequisito.objectId]) {
+                sw = YES;
+            }
+        }
+        if (sw) {
+            // no hacemos nada
+        } else {
+            swSiGanoMedalla = NO;
+            mensaje = [NSString stringWithFormat:@"%@\n- %@", mensaje, placeRequisito[@"name"]];
+        }
+    }
+    if (swSiGanoMedalla) {
+        NSLog(@"si gano");
+        // mostramos mensaje con acciones
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"¡Te mereces esta esta medalla!"
+                                                        message:@"Reclama tu medalla para que se adicione a tu medallero personal"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancelar"
+                                              otherButtonTitles:@"Reclamar", nil];
+        [alert show];
+        
+    } else {
+        [Util showImportantMessage:@"¡Falta poco!" message:mensaje];
+    }
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+// accion que se realiza cuando presionamos Reclamar
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"clickedButtonAtIndex");
+    
+    if (buttonIndex == 1) { // preguntamos si exactmanet se presiono el boton Relcamar
+        [Util showProgress:self.navigationController.view];
+        
+        PFObject *gana = [PFObject objectWithClassName:@"Gana"];
+        [gana setObject:[PFUser currentUser]  forKey:@"user"];
+        [gana setObject:medallaPresionada forKey:@"medalla"];
+        [gana setObject:[NSDate date] forKey:@"date"];
+        [gana saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [Util hideProgress:self.navigationController.view];
+            if (succeeded) {
+                [Util showSuccess:[NSString stringWithFormat:@"¡Ahora la medalla \"%@\" es tuya!", medallaPresionada[@"name"]] view:self.navigationController.view];
+                [self getMedallasFromParse];
+            } else {
+                [Util showConnectionError:self.navigationController.view];
+            }
+        }];
+    }
 }
-*/
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
--(void) getPlacesFromParse{
-    //Query
+-(void) getMedallasFromParse{
+    NSLog(@"getMedallasFromParse");
     PFQuery *query = [PFQuery queryWithClassName:@"Medalla"];
     [query orderByAscending:@"name"];
     
@@ -153,12 +200,32 @@
             // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
             
-            medallsArray = objects;
-            //actualizar tabla con datos
-            [self.tableView reloadData];
+            PFQuery *query2 = [PFQuery queryWithClassName:@"Gana"];
+            [query2 whereKey:@"user" equalTo:[PFUser currentUser]];
+            [query2 includeKey:@"medalla"];
+            [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects2, NSError *error) {
+                if (!error) {
+                    NSLog(@"Successfully retrieved %i scores. (query 2)", (int)objects2.count);
+                    
+                    NSMutableArray *medallas = [[NSMutableArray alloc] init];
+                    for (PFObject *gana in objects2) {
+                        PFObject *medalla = [gana objectForKey:@"medalla"];
+                        [medallas addObject:medalla];
+                    }
+                    misMedallasArray = medallas;
+                    
+                    // recien actualizamos las medallas a la rableview
+                    medallsArray = objects;
+                    [self.tableView reloadData];
+                    
+                } else {
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+            
+            
             
         } else {
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
         
@@ -182,7 +249,7 @@
 - (void) updateData: (id) sender {
     NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
     
-    [self getPlacesFromParse];
+    [self getMedallasFromParse];
 }
 
 
