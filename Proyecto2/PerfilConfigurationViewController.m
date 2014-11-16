@@ -7,7 +7,7 @@
 //
 
 #import "PerfilConfigurationViewController.h"
-@interface PerfilConfigurationViewController (){
+@interface PerfilConfigurationViewController ()<UITextFieldDelegate>{
     PFUser *user;
 }
 
@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *biografiaTextField;
+
 
 @end
 @implementation PerfilConfigurationViewController
@@ -62,28 +63,49 @@
 - (IBAction)guardarButton:(UIBarButtonItem *)sender {
     
     NSString *name = _nameTextField.text;
-     NSString *email = _emailTextField.text;
-     NSString *biografia = _biografiaTextField.text;
-  
-    user = [PFUser currentUser];
-    if (user) {
-        user.username=name;
-        user.email=email;
-        user[@"description"]=biografia;
-        user[@"imageUser"]=_imageUser;
-        [user saveInBackground];
-        
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Guardado" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+    NSString *email = _emailTextField.text;
+    NSString *biografia = _biografiaTextField.text;
+    
+    if (email.length>0&& biografia.length>0) {
+        if([self validateEmail:email]) {
+            
+            user = [PFUser currentUser];
+            if (user) {
+                user.username=name;
+                user.email=email;
+                user[@"description"]=biografia;
+                [user saveInBackground];
+                NSLog(@"todo salio bien");
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Guardado" message:nil delegate:nil cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+                [alert show];
+            }
+            else {
+                
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Revise su conexión" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+                [alert show];
+                NSLog(@"No sepudo cargar los datos del user actual");
+            }
+            
+        }
+        else{
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"El correo electrónico que ingresaste no parece pertenecer a una cuenta. Verifica tu dirección de correo y vuelve a intentarlo." message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+            [alert show];
+            
+        }
+    }
+    else {
+        // mostrar mensaje
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Por favor" message:@"Llene los espacios vacios." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alert show];
-    } else {
         
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Revise su conexión" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"No sepudo cargar los datos del user actual");
+        
     }
 }
-- (IBAction)editarFotoButton:(UIButton *)sender {
-    
-    }
+- (BOOL)validateEmail:(NSString *)emailStr {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:emailStr];
+}
+
 
 @end
