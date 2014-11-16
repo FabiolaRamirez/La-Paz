@@ -463,7 +463,7 @@
             </objects>
             <point key="canvasLocation" x="2036" y="2564"/>
         </scene>
-        <!--Medal Table View Controller-->
+        <!--Medallero-->
         <scene sceneID="ZWm-n7-SLC">
             <objects>
                 <tableViewController storyboardIdentifier="medalTableViewController" id="1HU-kf-INn" customClass="MedalTableViewController" sceneMemberID="viewController">
@@ -477,14 +477,20 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KoZ-lW-TQ3" id="MQH-p3-30z">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUK-Oe-TtG">
-                                            <rect key="frame" x="12" y="6" width="207" height="77"/>
-                                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNq-6Y-jPF">
+                                            <rect key="frame" x="8" y="2" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbp-xZ-iyj">
-                                            <rect key="frame" x="238" y="13" width="64" height="64"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uj9-rK-C2o">
+                                            <rect key="frame" x="8" y="28" width="235" height="61"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Enm-8r-dUl">
+                                            <rect key="frame" x="253" y="23" width="56" height="56"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -496,8 +502,9 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ooO-J4-dF1">
-                        <barButtonItem key="rightBarButtonItem" title="Ok" id="dJh-Qy-7Ah">
+                    <navigationItem key="navigationItem" title="Medallero" id="ooO-J4-dF1">
+                        <barButtonItem key="backBarButtonItem" title=" " id="ADC-jN-nYS"/>
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="dJh-Qy-7Ah">
                             <connections>
                                 <action selector="goProfile:" destination="1HU-kf-INn" id="UzX-JG-sFT"/>
                             </connections>
@@ -508,7 +515,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gb-g9-1nz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2390" y="2555"/>
+            <point key="canvasLocation" x="2390" y="2544"/>
         </scene>
         <!--Acerca De View Controller-->
         <scene sceneID="wKK-sC-0tL">
@@ -713,7 +720,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVN-z8-bzO">
                                             <rect key="frame" x="106" y="3" width="114" height="84"/>
-                                            <state key="normal" image="1BEAAD84-90FF-4D1C-869E-459B704ACFB7">
+                                            <state key="normal" image="3109F2D3-57FA-4DA9-843E-F69E45A1A991">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -1053,17 +1060,6 @@
                                     <segue destination="fPR-HE-rT0" kind="push" id="g4b-U5-du1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWM-Bd-jrO">
-                                <rect key="frame" x="45" y="452" width="231" height="45"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
-                                <state key="normal" title="Log In with Facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginWithFacebook:" destination="vZY-lD-x17" eventType="touchUpInside" id="74M-4x-8Ri"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="fabiolaramirez07@gmail.com" borderStyle="roundedRect" placeholder="Correo electrónico o nombre de usuario" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="di0-VX-QJF">
                                 <rect key="frame" x="23" y="279" width="278" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1089,6 +1085,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="L2n-6Z-lTg">
                                 <rect key="frame" x="122" y="127" width="81" height="81"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWM-Bd-jrO">
+                                <rect key="frame" x="45" y="448" width="231" height="45"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
+                                <state key="normal" title="Log In with Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginWithFacebook:" destination="vZY-lD-x17" eventType="touchUpInside" id="74M-4x-8Ri"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1720,7 +1727,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1BEAAD84-90FF-4D1C-869E-459B704ACFB7" width="32" height="32">
+        <image name="3109F2D3-57FA-4DA9-843E-F69E45A1A991" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

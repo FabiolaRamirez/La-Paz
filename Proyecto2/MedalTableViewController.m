@@ -64,13 +64,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-     UILabel * nombreLabel = (UILabel *)[cell viewWithTag:2];
-    UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:1];
+     UILabel * tituloLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel * descripcionLabel = (UILabel *)[cell viewWithTag:2];
+    UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
    
 
     PFObject *medal = [medallsArray objectAtIndex:indexPath.row];
     
-    nombreLabel.text = medal[@"description"];
+    tituloLabel.text = medal[@"name"];
+    descripcionLabel.text = medal[@"description"];
     //para obtener imagen
     PFFile *imageFile=[medal objectForKey:@"image"];
     
