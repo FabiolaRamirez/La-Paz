@@ -41,10 +41,15 @@
     
     [self configSegmentedControl];
     
+    
+      [self configRefreshControl];
+    
+}
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"se ejecuta cada rato");
+    
     // llamar la primera vez para que tenga datos
     [self getRanking1PlacesFromParse];
-      //[self configRefreshControl];
-    
 }
 
 

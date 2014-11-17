@@ -130,7 +130,7 @@
 }
 
 
-- (void) miMetodo {
+/*- (void) miMetodo {
     NSLog(@"Start miMetodo.");
     PFObject *gana = [PFObject objectWithClassName:@"Gana"];
     [gana setObject:[PFUser currentUser]  forKey:@"user"];
@@ -149,7 +149,7 @@
         }
     }];
 }
-
+*/
 
 - (void) getMedallsUser {
     NSLog(@"Start getMedallsUser.");

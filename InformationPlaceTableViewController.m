@@ -51,7 +51,7 @@
     self.navigationItem.title = nom;
     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"Hora"];
-    [query whereKey:@"objectId" equalTo:cod];
+    [query whereKey:@"objectIdLugar" equalTo:cod];
 
     //[query orderByAscending:@"Tipo"];
     
@@ -94,7 +94,7 @@
          return title=@"Información";
     }
     else if (section == 1){
-         return title=@"Horas";
+         return title=@"Horarios";
     }
     /*else if (section == 2){
         return title=@"Contactos";
@@ -204,7 +204,7 @@
     if (section == 0) {
         return @"";
     } else if (section == 1) {
-        return @"Este es un footer";
+        return @"";
     } /*else if (section == 2) {
                 return @"este es otro footer mucho mas largo para este ejemplo";
     }*/

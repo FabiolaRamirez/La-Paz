@@ -32,12 +32,6 @@
                                 <action selector="listaSuperiorButton:" destination="CZ4-MO-1fc" id="TCe-xQ-bzp"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="buscador" id="SRa-hW-Zp3">
-                            <inset key="imageInsets" minX="1" minY="1" maxX="1" maxY="1"/>
-                            <connections>
-                                <action selector="buscar:" destination="CZ4-MO-1fc" id="5Z4-Bh-UJU"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -499,7 +493,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlA-GO-4sd">
                                 <rect key="frame" x="16" y="106" width="288" height="262"/>
-                                <mutableString key="text">Un visitante en la ciudad de La Paz, requiere una asistencia de información más precisa de los lugares turísticos a visitar, por ello desean tener por comodidad información accesible que les permita conocer la ciudad. La Paz te guía por lugares turísticos y patrimoniales que que te encatarán, vive y disfruta una experiencia única conquistando y descubriendo nuevos lugares  que nunca olvidaras, para que no te bayas sin disfrutar de toda la riqueza patrimonial de la hermosa ciudad de La Paz. Se un conquistardor ambisioso y coleccionista de medallas, encabeza la lista del ranking de los más conquistadores del mundo.</mutableString>
+                                <string key="text">Un visitante en la ciudad de La Paz, requiere una asistencia de información más precisa de los lugares turísticos a visitar, por ello desean tener por comodidad información accesible que les permita conocer la ciudad. La Paz te guía por lugares turísticos y patrimoniales que que te encatarán, vive y disfruta una experiencia única conquistando y descubriendo nuevos lugares  que nunca olvidaras, para que no te bayas sin disfrutar de toda la riqueza patrimonial de la hermosa ciudad de La Paz. Se un conquistardor ambisioso y coleccionista de medallas, encabeza la lista del ranking de los más conquistadores del mundo.</string>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -983,7 +977,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWM-Bd-jrO">
                                 <rect key="frame" x="45" y="448" width="231" height="45"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="18"/>
-                                <state key="normal" title="Log In with Facebook">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1589,7 +1583,6 @@
     </scenes>
     <resources>
         <image name="aqui" width="32" height="32"/>
-        <image name="buscador" width="20" height="20"/>
         <image name="compartir" width="32" height="32"/>
         <image name="configurar" width="32" height="32"/>
         <image name="flag-4" width="21" height="21"/>
