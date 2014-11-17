@@ -17,9 +17,9 @@
     NSArray *fechasArray;
   
     PFUser *user;
-    
-    
 }
+
+
 
 @end
 
@@ -180,7 +180,25 @@
             
         } else {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"botonesCell" forIndexPath:indexPath];
+            
+            UILabel * countMedallLabel = (UILabel *)[cell viewWithTag:1];
+            
+            PFQuery *query = [PFQuery queryWithClassName:@"Gana"];
+            [query whereKey:@"user" equalTo:[PFUser currentUser]];
+            [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+                NSLog(@"End getNroMedallasDelUsuario.");
+                if (!error) {
+                    // count es el numero de medallas
+                    
+                    countMedallLabel.text=[NSString stringWithFormat:@"%i", count];
+
+                } else {
+                    NSLog(@"Error (getNroMedallasDelUsuario): %@", error);
+                }
+            }];
+            
             return cell;
+            
         }
         
         
@@ -301,15 +319,6 @@
 }
 
 
-- (IBAction)goRecompensas:(UIButton *)sender {
-    
-    RewardTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"rewardTableViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
-    
-}
-
-
 - (IBAction)goMedallero:(UIButton *)sender {
     NSLog(@"goMedallero");
     
@@ -320,7 +329,20 @@
 }
 
 
+-(void) getNroMedallasDelUsuario {
+    NSLog(@"Start getNroMedallasDelUsuario.");
 
+PFQuery *query = [PFQuery queryWithClassName:@"Gana"];
+[query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        NSLog(@"End getNroMedallasDelUsuario.");
+        if (!error) {
+            // count es el numero de medallas
+            } else {
+            NSLog(@"Error (getNroMedallasDelUsuario): %@", error);
+                }
+        }];
+}
 
 
 

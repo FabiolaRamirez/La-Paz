@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import "PlacePrincipalTableViewController.h"
 #import "ConfigurationTableViewController.h"
-#import "RewardTableViewController.h"
 #import "PlaceMainTableViewController.h"
 @interface ProfileTableViewController : UITableViewController
 

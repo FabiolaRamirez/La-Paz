@@ -11,6 +11,7 @@
 @interface PeopleTableViewController ()
 {
     NSArray * personasVector;
+     UIRefreshControl *refreshControl;
 }
 
 @end
@@ -23,7 +24,12 @@
     
     personasVector=[[NSArray alloc] init];
     
-    [self getRankingFromParse];
+   [self configRefreshControl];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"se ejecuta cada rato");
+    
+     [self getRankingFromParse];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,14 +63,19 @@
     PFObject *object = [personasVector objectAtIndex:indexPath.row];
     
     nameLabel.text = object[@"username"];
-    countConquerLabel.text=[NSString stringWithFormat:@"%@",object[@"ranking"]];
+    if (object[@"ranking"]!=nil) {
+        countConquerLabel.text=[NSString stringWithFormat:@"%@ conquistas",object[@"ranking"]];
+    }
+    else{
+        countConquerLabel.text=@"0";
+    }
     //para obtener imagen
     PFFile *imageFile=[object objectForKey:@"imageUser"];
     
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if(!error){
             UserImageView.layer.masksToBounds=YES;
-            UserImageView.layer.cornerRadius=23;
+            UserImageView.layer.cornerRadius=22;
             UserImageView.image=[UIImage imageWithData:data];
             NSLog(@"entra!!");
         }
@@ -73,7 +84,7 @@
         }
         
     }];
-
+   
     
     return cell;
 }
@@ -123,14 +134,13 @@
 }
 */
 
-
 - (void) getRankingFromParse {
     NSLog(@"getRankingFromParse");
     PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query orderByDescending:@"ranking"];
     query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
+        [refreshControl endRefreshing];
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
@@ -145,5 +155,21 @@
         
     }];
 }
+
+-(void) configRefreshControl{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateData:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    [self.tableView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+}
+
+- (void) updateData: (id) sender {
+    NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
+    
+    [self getRankingFromParse];
+}
+
 
 @end

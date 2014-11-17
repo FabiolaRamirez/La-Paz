@@ -10,12 +10,11 @@
 #import "SectionPlaceCollectionViewController.h"
 #import "UIColor+LaPaz.h"
 #import "Util.h"
-#import "PlacePrincipalTableViewController.h"
 #import "PlaceMainTableViewController.h"
 
 @implementation RankingLugaresTableViewController {
     UISegmentedControl* segmentedControl;
-    
+      UIRefreshControl *refreshControl;
     NSArray * places;
 }
 
@@ -44,6 +43,7 @@
     
     // llamar la primera vez para que tenga datos
     [self getRanking1PlacesFromParse];
+      //[self configRefreshControl];
     
 }
 
@@ -82,7 +82,7 @@
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
     UILabel * distanceLabel = (UILabel *)[cell viewWithTag:4];
     UILabel * contador = (UILabel *)[cell viewWithTag:5];
-    UILabel * kmLabel = (UILabel *)[cell viewWithTag:6];
+    
     
     PFObject *placeDetail=[places objectAtIndex:indexPath.row];
     
@@ -102,9 +102,16 @@
         
     }];
     
+    //contador del lugar
+        if (placeDetail[@"rank"]!=nil) {
+        contador.text=[NSString stringWithFormat:@"%@ conquistas ",placeDetail[@"rank"]];
+    }
+    else{
+        contador.text=@"0";
+    }
     
     
-    // obtmer la bucacion del lugar
+    // obtner la ubicacion del lugar
     PFGeoPoint * placeGeoPoint = placeDetail[@"coordinate"];
     NSLog(@"lugar %f",placeGeoPoint.latitude);
     NSLog(@"%f",placeGeoPoint.longitude);
@@ -122,15 +129,13 @@
             NSLog(@"distancia %f km", distancia);
             
             if (distancia<1) {
-                kmLabel.text=@"m";
                 double ditanciaMetros=distancia*1000;
-                distancia=ditanciaMetros;
-                distanceLabel.text = [Util number2Decimals:distancia];
+                distanceLabel.text = [NSString stringWithFormat:@" a %@ m ",[Util number2Decimals:ditanciaMetros]];
             }
             else{
                 //muestra distancia mayor a 1km
                 //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
-                distanceLabel.text = [Util number2Decimals:distancia];
+                distanceLabel.text = [NSString stringWithFormat:@" a %@ km ",[Util number2Decimals:distancia]];
             }
             
         } else {
@@ -174,24 +179,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - (void) configSegmentedControl {
     NSArray *buttonNames = [NSArray arrayWithObjects:
-                            @"Conquistados", @"Populares", @"Recomendados", nil];
+                            @"Más Conquistados", @"Recomendados", nil];
     segmentedControl = [[UISegmentedControl alloc]
                         initWithItems:buttonNames];
     segmentedControl.frame = CGRectMake(10, 7, 300, 30);
@@ -215,10 +205,7 @@
         [self getRanking1PlacesFromParse];
     } else if (sender.selectedSegmentIndex == 1) {
         [self getRanking2PlacesFromParse];
-    } else if (sender.selectedSegmentIndex == 2) {
-        [self getRanking3PlacesFromParse];
     }
-    
 }
 
 
@@ -228,7 +215,7 @@
     [query orderByDescending:@"rank"];
     query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
+        [refreshControl endRefreshing];
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
@@ -243,34 +230,15 @@
         
     }];
 }
+
+
 
 - (void) getRanking2PlacesFromParse {
-    PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    [query orderByAscending:@"ranking_economico"];
-    query.limit = 10;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-            
-            places = objects;
-            //actualizar tabla con datos
-            [self.tableView reloadData];
-            
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
-}
-
-- (void) getRanking3PlacesFromParse {
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
     [query orderByDescending:@"ranking_recomendados"];
     query.limit = 10;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
+        [refreshControl endRefreshing];
         if (!error) {
             // The find succeeded.
             NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
@@ -286,7 +254,21 @@
     }];
 }
 
+-(void) configRefreshControl{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateData:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    [self.tableView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+}
 
+- (void) updateData: (id) sender {
+    NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
+    
+    [self getRanking1PlacesFromParse];
+    [self getRanking2PlacesFromParse];
+}
 
 
 

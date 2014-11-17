@@ -14,6 +14,7 @@
 @interface SectionPlaceCollectionViewController ()
 {
     NSArray * itemArray;
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -34,24 +35,9 @@
     [super viewDidLoad];
     
     itemArray = [[NSMutableArray alloc] init];
-    //Query
-    PFQuery *query = [PFQuery queryWithClassName:@"SectionPlace"];
-    [query orderByAscending:@"name"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
-            
-            itemArray = objects;
-            [self.collectionView reloadData];
-            
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
-    
-    
+
+    [self query];
+    [self configRefreshControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,5 +107,40 @@
     
 }
 
+-(void) query{
+    
+    //Query
+    PFQuery *query = [PFQuery queryWithClassName:@"SectionPlace"];
+    [query orderByAscending:@"name"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [refreshControl endRefreshing];
+        if (!error) {
+            NSLog(@"Successfully retrieved %i scores.", (int)objects.count);
+            
+            itemArray = objects;
+            [self.collectionView reloadData];
+            
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        
+    }];
+}
+
+-(void) configRefreshControl{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateData:) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+    
+    [self.collectionView setContentOffset:CGPointMake(0, -refreshControl.frame.size.height) animated:YES];
+    [refreshControl beginRefreshing];
+}
+
+- (void) updateData: (id) sender {
+    NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
+    
+    [self query];
+}
 
 @end

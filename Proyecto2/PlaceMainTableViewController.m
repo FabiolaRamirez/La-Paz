@@ -161,7 +161,7 @@
             NSLog(@"distancia %f km", distancia);
             
             // si se pone 10000 se puede conquistar desde muy lejos
-            if (distancia < 10000) {
+            if (distancia < 0.3) {
                 
                 [self saveConquest]; // guarda en Parse la conquista
                 

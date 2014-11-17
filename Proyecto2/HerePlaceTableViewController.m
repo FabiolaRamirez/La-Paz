@@ -7,7 +7,6 @@
 //
 
 #import "HerePlaceTableViewController.h"
-#import "PlacePrincipalTableViewController.h"
 
 
 @interface HerePlaceTableViewController (){
@@ -76,7 +75,6 @@
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:3];
     UILabel * distanceLabel = (UILabel *)[cell viewWithTag:4];
     UILabel * contador = (UILabel *)[cell viewWithTag:5];
-     UILabel * kmLabel = (UILabel *)[cell viewWithTag:6];
     
     PFObject *placeDetail=[placesArray objectAtIndex:indexPath.row];
     
@@ -96,36 +94,19 @@
         
     }];
     
-    //para el contador de lugares conquistados
-    
-    NSString *cate = placeDetail.objectId;
-    NSLog(@".......:::%@",cate);
-    
-    //Query
-    PFQuery *query = [PFQuery queryWithClassName:@"Conquista"];
-    [query whereKey:@"codigo_place" equalTo:cate];
-    
-    //[query orderByAscending:@"Tipo"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved _________%i scores.", (int)objects.count);
-            //int cont=(int)objects.count;
-            contador.text=[NSString stringWithFormat:@"%d",(int)objects.count];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        
-    }];
-    
     
     // obtmer la bucacion del lugar
     PFGeoPoint * placeGeoPoint = placeDetail[@"coordinate"];
     NSLog(@"lugar %f",placeGeoPoint.latitude);
     NSLog(@"%f",placeGeoPoint.longitude);
+    
+    //contador del lugar
+    if (placeDetail[@"rank"]!=nil) {
+        contador.text=[NSString stringWithFormat:@"%@ conquistas",placeDetail[@"rank"]];
+    }
+    else{
+        contador.text=@"0";
+    }
     
     // obtener ubicacion del usuario
     [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint *userGeoPoint, NSError *error) {
@@ -140,15 +121,13 @@
             NSLog(@"distancia %f km", distancia);
             
             if (distancia<1) {
-                kmLabel.text=@"m";
                 double ditanciaMetros=distancia*1000;
-                distancia=ditanciaMetros;
-                distanceLabel.text = [Util number2Decimals:distancia];
+                distanceLabel.text = [NSString stringWithFormat:@" a %@ m ",[Util number2Decimals:ditanciaMetros]];
             }
             else{
                 //muestra distancia mayor a 1km
                 //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
-                distanceLabel.text = [Util number2Decimals:distancia];
+                distanceLabel.text = [NSString stringWithFormat:@" a %@ km ",[Util number2Decimals:distancia]];
             }
             
         } else {
@@ -278,6 +257,8 @@
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Revice su conexión" message:nil delegate:nil cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+            [alert show];
         }
     }];
 }
@@ -297,19 +278,5 @@
     [self getPlacesFromParse];
 }
 
-/*- (void) getNroUsuariosQueConquistaronEsteLugar {
-    NSLog(@"Start getNroUsuariosQueConquistaronEsteLugar.");
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Conquest"];
-    [query whereKey:@"place" equalTo:self.place];
-    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
-        NSLog(@"End getNroUsuariosQueConquistaronEsteLugar.");
-        
-        if (!error) {
-            self.counterLabel.text = [NSString stringWithFormat:@"%i conquistas", count];
-        } else {
-            NSLog(@"Error (getNroUsuariosQueConquistaronEsteLugar): %@", error);
-        }
-    }];
-}*/
+
 @end

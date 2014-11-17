@@ -65,16 +65,16 @@ UIGestureRecognizer *tapper;
 - (void) soloUnaVez {
     NSLog(@"soloUnaVez");
     
-    PFObject *placeOne = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"jC63GBg11B"];
-    PFObject *placeTwo = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"nW4Vh3WJAN"];
-    //    PFObject *placeThre = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"mvhzm3AUTD"];
+    PFObject *placeOne = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"e7nwm519Xg"];
+    PFObject *placeTwo = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"93KdiSbuiRv2lJ85pgli"];
+     //PFObject *placeThre = [PFObject objectWithoutDataWithClassName:@"Place" objectId:@"1sKIGNhimJ"];
     
-    PFObject *medalla= [PFObject objectWithoutDataWithClassName:@"Medalla" objectId:@"MwkebiiOO4"];
+    PFObject *medalla= [PFObject objectWithoutDataWithClassName:@"Medalla" objectId:@"RojCTBpHws"];
     
     PFRelation *relation = [medalla relationForKey:@"places"];
     [relation addObject:placeOne];
     [relation addObject:placeTwo];
-    //    [relation addObject:placeThre];
+    //[relation addObject:placeThre];
     
     [medalla saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         

@@ -98,7 +98,6 @@
 		20EAD6C2190EC3BA00AD9126 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EAD6A1190EC3B900AD9126 /* UIKit.framework */; };
 		20EAD6CA190EC3BA00AD9126 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20EAD6C8190EC3BA00AD9126 /* InfoPlist.strings */; };
 		20EAD6CC190EC3BA00AD9126 /* Proyecto2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EAD6CB190EC3BA00AD9126 /* Proyecto2Tests.m */; };
-		20FFD8AF19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */; };
 		9DA291BB1A1333E900E0003F /* PlaceMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA291BA1A1333E900E0003F /* PlaceMainTableViewController.m */; };
 		9DA93C7319F4A971002367AA /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */; };
 /* End PBXBuildFile section */
@@ -258,8 +257,6 @@
 		20EAD6C7190EC3BA00AD9126 /* Proyecto2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Proyecto2Tests-Info.plist"; sourceTree = "<group>"; };
 		20EAD6C9190EC3BA00AD9126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		20EAD6CB190EC3BA00AD9126 /* Proyecto2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Proyecto2Tests.m; sourceTree = "<group>"; };
-		20FFD8AD19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePrincipalTableViewController.h; sourceTree = "<group>"; };
-		20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePrincipalTableViewController.m; sourceTree = "<group>"; };
 		9DA291B91A1333E900E0003F /* PlaceMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMainTableViewController.h; sourceTree = "<group>"; };
 		9DA291BA1A1333E900E0003F /* PlaceMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMainTableViewController.m; sourceTree = "<group>"; };
 		9DA93C7219F4A971002367AA /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
@@ -411,8 +408,6 @@
 				2096F57919C8BC0600D80AB6 /* SectionPlaceCollectionViewController.m */,
 				203F263919DB3A5100D1D01A /* HerePlaceTableViewController.h */,
 				203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */,
-				20FFD8AD19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.h */,
-				20FFD8AE19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m */,
 				203E43AE19E86EC5000054F9 /* MapViewController.h */,
 				203E43AF19E86EC5000054F9 /* MapViewController.m */,
 				2038A9EE19F32DE9008FB445 /* RankingLugaresTableViewController.h */,
@@ -733,7 +728,6 @@
 				20652AD819F1E5B80042BD42 /* JGProgressHUDFadeAnimation.m in Sources */,
 				20AC69361990318B0008E4B3 /* Annotation.m in Sources */,
 				20AC698F19941B820008E4B3 /* PlacesCategoryTableViewController.m in Sources */,
-				20FFD8AF19DCC3B100DCD5B5 /* PlacePrincipalTableViewController.m in Sources */,
 				204C1ACA19D237B900E323D7 /* ConquerCell.m in Sources */,
 				20AC69991994557F0008E4B3 /* TGFoursquareLocationDetail.m in Sources */,
 				20218D1019B52D9E002E111E /* InformationPlace2TableViewController.m in Sources */,

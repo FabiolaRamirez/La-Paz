@@ -77,7 +77,7 @@
     
     tituloLabel.text = medal[@"name"];
     descripcionLabel.text = medal[@"description"];
-    ganadoLabel.text = [self isMyMedall:medal] ? @"Ganado" : @"";
+    ganadoLabel.text = [self isMyMedall:medal] ? @"GANADO" : @"";
     //para obtener imagen
     PFFile *imageFile = [medal objectForKey:@"image"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {

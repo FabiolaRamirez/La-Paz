@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import "PlacePrincipalTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Util.h"
 #import "PlaceMainTableViewController.h"
