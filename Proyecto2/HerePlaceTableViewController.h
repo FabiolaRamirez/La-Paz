@@ -11,6 +11,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "Util.h"
 #import "PlaceMainTableViewController.h"
+#import "HereMapViewController.h"
 @interface HerePlaceTableViewController : UITableViewController
 
 @property (nonatomic, strong) PFObject *place;

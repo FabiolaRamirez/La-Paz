@@ -12,11 +12,12 @@
 #import "HoraCell.h"
 #import "AdicionalInformacionCell.h"
 #import "InformationPlaceTableViewController.h"
+#import "InformationTableViewCell.h"
 
 @interface InformationPlaceTableViewController (){
 
     NSArray *rowInSectionArray1;
-    //NSArray *rowInSectionArray2;
+
 }
 
 @end
@@ -41,7 +42,6 @@
     //instanciando sectionArray para las secciones
     
     rowInSectionArray1=[[NSMutableArray alloc] init];
-    //rowInSectionArray2=[[NSMutableArray alloc] initWithObjects:@"sdfdf", nil];
     
     NSString *cod = self.ObjetoA.objectId;
     NSLog(@"el id es: %@",cod);
@@ -49,8 +49,10 @@
     NSString *nom=self.ObjetoA[@"name"];
     
     self.navigationItem.title = nom;
+    
     //Query
     PFQuery *query = [PFQuery queryWithClassName:@"Hora"];
+    [query orderByAscending:@"dia"];
     [query whereKey:@"objectIdLugar" equalTo:cod];
 
     //[query orderByAscending:@"Tipo"];
@@ -85,7 +87,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -96,9 +98,9 @@
     else if (section == 1){
          return title=@"Horarios";
     }
-    /*else if (section == 2){
-        return title=@"Contactos";
-    }*/
+    else if (section == 2){
+        return title=@"";
+    }
     return title;
 }
 
@@ -110,9 +112,9 @@
     } else if(section==1) {
         return [rowInSectionArray1 count];
     }
-   /* else if(section==2) {
-        return [rowInSectionArray2 count];
-    }*/
+   else if(section==2) {
+        return [rowInSectionArray1 count];
+    }
     return 1;
 }
 
@@ -156,7 +158,7 @@
         HoraCell *cell = [tableView dequeueReusableCellWithIdentifier:@"horaCell"];
         
         if (cell == nil) {
-            NSLog(@"estaaccccccccccccccccccccccccccccccc");
+            NSLog(@"estaac section 1");
             cell = [HoraCell horaCell];
             PFObject *horaDetail=[rowInSectionArray1 objectAtIndex:indexPath.row];
             // Configure the cell...
@@ -174,8 +176,23 @@
             cell.horaCerradoLabel.text=horaDetail[@"horaCerrado"];
         }
         return cell;
-        NSLog(@"esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        NSLog(@"esteeee");
         
+    }
+    else if (indexPath.section == 2){
+        InformationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"informationTableViewCell"];
+        
+        if (cell == nil) {
+            NSLog(@"section2");
+            cell = [InformationTableViewCell informationTableViewCell];
+            PFObject *informationDetail=[rowInSectionArray1 objectAtIndex:indexPath.row];
+            // Configure the cell...
+            
+            cell.nameLabel.text =informationDetail[@"nameInformation"];
+            cell.informationLabel.text = informationDetail[@"detailInformation"];
+           
+        }
+        return cell;
     }
     
     return nil;
@@ -192,11 +209,11 @@
         return 44;
     }
     else if(indexPath.section==1){
+        return 55;
+    }
+    else if(indexPath.section==2){
         return 44;
     }
-    /*else if(indexPath.section==2){
-        return 44;
-    }*/
     return 44.0f; //cell for comments, in reality the height has to be adjustable
 }
 

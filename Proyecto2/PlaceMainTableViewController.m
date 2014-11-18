@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fotoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *tituloLabel;
 @property (weak, nonatomic) IBOutlet UILabel *conquistarLabel;
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *texto1MapLabel;
 @property (weak, nonatomic) IBOutlet UILabel *texto2MapLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
@@ -26,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *conquista2Label;
 @property (weak, nonatomic) IBOutlet UILabel *texto3MapLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *conquistaActivityIndicator;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -219,7 +219,7 @@
         
         NSLog(@"> Tipo %@ ", cod);
         
-        if ([cod isEqual:@"PARQUEX"]||[cod isEqual:@"PLAZAX"]||[cod isEqual:@"MONUMENTOX"]) {
+        if ([cod isEqual:@"MIRADORX"]||[cod isEqual:@"CIUDADX"]||[cod isEqual:@"PUENTEX"]||[cod isEqual:@"CALLEX"]||[cod isEqual:@"PLAZAX"]||[cod isEqual:@"MONUMENTOX"]) {
             InformationPlace2TableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"informationPlace2TableViewController"];
             //PFObject *p = [objectArray objectAtIndex:indexPath.row];
             viewController.ObjetoB = self.lugar;
@@ -251,17 +251,16 @@
             double distancia = [ubicacionLugar distanceInKilometersTo:userGeoPoint];
             
             NSLog(@"distancia %f km", distancia);
-            if (distancia < 1) {
-                self.texto2MapLabel.text = @"m";
-                double ditanciaMetros = distancia * 1000;
-                distancia = ditanciaMetros;
-                self.texto3MapLabel.text = [Util number2Decimals:distancia];
-            } else {
-                self.texto2MapLabel.text = @"km";
+            if (distancia<1) {
+                double ditanciaMetros=distancia*1000;
+                _texto3MapLabel.text = [NSString stringWithFormat:@" a %@ m ",[Util number2Decimals:ditanciaMetros]];
+            }
+            else{
                 //muestra distancia mayor a 1km
                 //countKmLabel.text=[NSString stringWithFormat:@"%g", distancia];
-                self.texto3MapLabel.text = [Util number2Decimals:distancia];
+                _texto3MapLabel.text = [NSString stringWithFormat:@" a %@ km ",[Util number2Decimals:distancia]];
             }
+
             
         } else {
             NSLog(@"Error al obtener localizacion del ususario");

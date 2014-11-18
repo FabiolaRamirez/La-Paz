@@ -93,8 +93,8 @@
         }
         if (indexPath.row==1) {
             
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Esta seguro que desea salir de La Paz?" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
-            [alert show];
+            /*UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Esta seguro que desea salir de La Paz?" message:nil delegate:self cancelButtonTitle:@"Aceptar" otherButtonTitles:nil];
+            [alert show];*/
             [PFUser logOut];
         [self dismissViewControllerAnimated:YES completion:nil];
             /*LoginViewController *loginController=[[UIStoryboard storyboardWithName:@"loginViewController" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"]; //or the homeController

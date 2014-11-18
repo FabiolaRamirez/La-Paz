@@ -17,6 +17,7 @@
 		20317A3B1A17FA170032F038 /* PerfilConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20317A3A1A17FA170032F038 /* PerfilConfigurationViewController.m */; };
 		2032586B19D5BDCB00DC1CB9 /* ConquerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2032586A19D5BDCB00DC1CB9 /* ConquerCell.xib */; };
 		203490E21915A8200028ABC3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203490E11915A8200028ABC3 /* MapKit.framework */; };
+		203822361A1AA2B500853544 /* HereMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203822351A1AA2B500853544 /* HereMapViewController.m */; };
 		2038A9E719F31477008FB445 /* UIColor+LaPaz.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9E619F31477008FB445 /* UIColor+LaPaz.m */; };
 		2038A9EC19F3240D008FB445 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EB19F3240D008FB445 /* Util.m */; };
 		2038A9F019F32DE9008FB445 /* RankingLugaresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2038A9EF19F32DE9008FB445 /* RankingLugaresTableViewController.m */; };
@@ -87,6 +88,8 @@
 		20C7952D19B415FB00A1335E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C7952C19B415FB00A1335E /* FacebookSDK.framework */; };
 		20D005E319AE7C2B0028693B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20D005E219AE7C2B0028693B /* Images.xcassets */; };
 		20D005E619AEC4FE0028693B /* InformationPlaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D005E519AEC4FE0028693B /* InformationPlaceTableViewController.m */; };
+		20D3552D1A1B75FF00239388 /* InformationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D3552C1A1B75FF00239388 /* InformationTableViewCell.m */; };
+		20D3552F1A1B762A00239388 /* InformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D3552E1A1B762A00239388 /* InformationTableViewCell.xib */; };
 		20EAD69E190EC3B900AD9126 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EAD69D190EC3B900AD9126 /* Foundation.framework */; };
 		20EAD6A0190EC3B900AD9126 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EAD69F190EC3B900AD9126 /* CoreGraphics.framework */; };
 		20EAD6A2190EC3B900AD9126 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EAD6A1190EC3B900AD9126 /* UIKit.framework */; };
@@ -130,6 +133,8 @@
 		20317A3A1A17FA170032F038 /* PerfilConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerfilConfigurationViewController.m; sourceTree = "<group>"; };
 		2032586A19D5BDCB00DC1CB9 /* ConquerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConquerCell.xib; sourceTree = "<group>"; };
 		203490E11915A8200028ABC3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		203822341A1AA2B500853544 /* HereMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HereMapViewController.h; sourceTree = "<group>"; };
+		203822351A1AA2B500853544 /* HereMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HereMapViewController.m; sourceTree = "<group>"; };
 		2038A9E519F31477008FB445 /* UIColor+LaPaz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LaPaz.h"; sourceTree = "<group>"; };
 		2038A9E619F31477008FB445 /* UIColor+LaPaz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LaPaz.m"; sourceTree = "<group>"; };
 		2038A9EA19F3240D008FB445 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
@@ -242,6 +247,9 @@
 		20D005E219AE7C2B0028693B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20D005E419AEC4FE0028693B /* InformationPlaceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InformationPlaceTableViewController.h; path = ../InformationPlaceTableViewController.h; sourceTree = "<group>"; };
 		20D005E519AEC4FE0028693B /* InformationPlaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InformationPlaceTableViewController.m; path = ../InformationPlaceTableViewController.m; sourceTree = "<group>"; };
+		20D3552B1A1B75FF00239388 /* InformationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationTableViewCell.h; sourceTree = "<group>"; };
+		20D3552C1A1B75FF00239388 /* InformationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationTableViewCell.m; sourceTree = "<group>"; };
+		20D3552E1A1B762A00239388 /* InformationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationTableViewCell.xib; sourceTree = "<group>"; };
 		20EAD69A190EC3B900AD9126 /* Proyecto2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proyecto2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EAD69D190EC3B900AD9126 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		20EAD69F190EC3B900AD9126 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -408,6 +416,8 @@
 				2096F57919C8BC0600D80AB6 /* SectionPlaceCollectionViewController.m */,
 				203F263919DB3A5100D1D01A /* HerePlaceTableViewController.h */,
 				203F263A19DB3A5100D1D01A /* HerePlaceTableViewController.m */,
+				203822341A1AA2B500853544 /* HereMapViewController.h */,
+				203822351A1AA2B500853544 /* HereMapViewController.m */,
 				203E43AE19E86EC5000054F9 /* MapViewController.h */,
 				203E43AF19E86EC5000054F9 /* MapViewController.m */,
 				2038A9EE19F32DE9008FB445 /* RankingLugaresTableViewController.h */,
@@ -478,6 +488,9 @@
 				20426ED119D3667A000F2B14 /* MedalCell.xib */,
 				20426ED319D366AB000F2B14 /* MedalCell.h */,
 				20426ED419D366AB000F2B14 /* MedalCell.m */,
+				20D3552B1A1B75FF00239388 /* InformationTableViewCell.h */,
+				20D3552C1A1B75FF00239388 /* InformationTableViewCell.m */,
+				20D3552E1A1B762A00239388 /* InformationTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -695,6 +708,7 @@
 				20C7951C19B3D6A100A1335E /* AdicionalInformacionCell.xib in Resources */,
 				20EAD6A8190EC3B900AD9126 /* InfoPlist.strings in Resources */,
 				20C7951A19B3D5CA00A1335E /* HoraCell.xib in Resources */,
+				20D3552F1A1B762A00239388 /* InformationTableViewCell.xib in Resources */,
 				20C7951619B3D58900A1335E /* DescripcionCell.xib in Resources */,
 				20652AD419F1E5B80042BD42 /* JGProgressHUD Resources.bundle in Resources */,
 				209A34C7197C697D00C6AE8E /* Main.storyboard in Resources */,
@@ -727,6 +741,7 @@
 				20590D3A1A12C7810073CC4E /* UtilParse.m in Sources */,
 				20652AD819F1E5B80042BD42 /* JGProgressHUDFadeAnimation.m in Sources */,
 				20AC69361990318B0008E4B3 /* Annotation.m in Sources */,
+				203822361A1AA2B500853544 /* HereMapViewController.m in Sources */,
 				20AC698F19941B820008E4B3 /* PlacesCategoryTableViewController.m in Sources */,
 				204C1ACA19D237B900E323D7 /* ConquerCell.m in Sources */,
 				20AC69991994557F0008E4B3 /* TGFoursquareLocationDetail.m in Sources */,
@@ -757,6 +772,7 @@
 				202AFB3619FF367F00DDD5A9 /* MapDetailPlaceViewController.m in Sources */,
 				20317A3B1A17FA170032F038 /* PerfilConfigurationViewController.m in Sources */,
 				2062DF06198719EC0035F5A0 /* PlacesTableViewController.m in Sources */,
+				20D3552D1A1B75FF00239388 /* InformationTableViewCell.m in Sources */,
 				2096F57A19C8BC0600D80AB6 /* SectionPlaceCollectionViewController.m in Sources */,
 				20652ADA19F1E5B80042BD42 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
 				20652AD919F1E5B80042BD42 /* JGProgressHUDFadeZoomAnimation.m in Sources */,

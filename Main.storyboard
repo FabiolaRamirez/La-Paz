@@ -107,12 +107,44 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Aquí" id="InB-do-4OQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="YXT-ZP-dx6"/>
+                        <barButtonItem key="rightBarButtonItem" image="place" id="bkT-9r-4n0">
+                            <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                            <connections>
+                                <action selector="goMapButton:" destination="ugy-AU-EgC" id="9sF-86-yai"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpP-51-m8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1995" y="-813"/>
+        </scene>
+        <!--Here Map View Controller-->
+        <scene sceneID="Mmy-Q1-CbE">
+            <objects>
+                <viewController storyboardIdentifier="hereMapViewController" id="zmL-iH-J3v" customClass="HereMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xmJ-Z2-HDx"/>
+                        <viewControllerLayoutGuide type="bottom" id="KN1-Gz-q2B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yMQ-Ub-bzu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mxj-kA-m0G">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="mxj-kA-m0G" id="ZMi-M5-xHG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lnb-Pl-rLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2377" y="-813"/>
         </scene>
         <!--Buscar-->
         <scene sceneID="98j-S8-pxO">
@@ -816,18 +848,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdu-qN-q3X">
-                                                    <rect key="frame" x="168" y="8" width="144" height="39"/>
+                                                    <rect key="frame" x="168" y="8" width="144" height="47"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="km" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fov-7G-qUX">
-                                                    <rect key="frame" x="269" y="61" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="000.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dni-U8-68Q">
-                                                    <rect key="frame" x="217" y="62" width="50" height="21"/>
+                                                    <rect key="frame" x="168" y="63" width="131" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -835,13 +861,7 @@
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8rt-11-mAg">
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="a" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQY-x4-ReB">
-                                                    <rect key="frame" x="173" y="61" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a5c-cT-DBb">
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2jN-O0-jLW">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="88"/>
                                                 </mapView>
                                             </subviews>
@@ -898,12 +918,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="zlo-Ly-aLC">
                         <barButtonItem key="backBarButtonItem" title=" " id="2of-4Z-hyE"/>
-                        <barButtonItem key="rightBarButtonItem" image="compartir" id="Ora-dn-QZi">
-                            <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                            <connections>
-                                <action selector="compartir:" destination="QYi-Sf-RuR" id="50t-A8-3Ud"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -915,16 +929,15 @@
                         <outlet property="conquistarLabel" destination="MhS-gA-lf6" id="AFA-de-SDz"/>
                         <outlet property="fotoImageView" destination="aCZ-TN-oiI" id="Aee-8y-SQW"/>
                         <outlet property="infoLabel" destination="Txk-68-e5l" id="Dac-rZ-dKT"/>
-                        <outlet property="mapView" destination="a5c-cT-DBb" id="7Bb-nT-Dz9"/>
+                        <outlet property="mapView" destination="2jN-O0-jLW" id="Vgn-34-qNf"/>
                         <outlet property="texto1MapLabel" destination="Sdu-qN-q3X" id="yaP-YI-3wL"/>
-                        <outlet property="texto2MapLabel" destination="Fov-7G-qUX" id="dOa-aa-AQM"/>
                         <outlet property="texto3MapLabel" destination="Dni-U8-68Q" id="dmq-y0-oVf"/>
                         <outlet property="tituloLabel" destination="3Us-TI-18p" id="1pk-g5-bI9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acj-zO-DdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4302" y="575"/>
+            <point key="canvasLocation" x="4302" y="570"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="Hi0-fW-fMS">
@@ -1419,7 +1432,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XuX-8I-c05" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3912" y="1204"/>
+            <point key="canvasLocation" x="4695" y="1105"/>
         </scene>
         <!--Ranking Lugares Table View Controller-->
         <scene sceneID="fJ7-ra-CQl">
@@ -1583,7 +1596,6 @@
     </scenes>
     <resources>
         <image name="aqui" width="32" height="32"/>
-        <image name="compartir" width="32" height="32"/>
         <image name="configurar" width="32" height="32"/>
         <image name="flag-4" width="21" height="21"/>
         <image name="friends" width="32" height="32"/>

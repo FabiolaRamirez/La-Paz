@@ -7,7 +7,7 @@
 //
 
 #import "HerePlaceTableViewController.h"
-
+#import "HereMapViewController.h"
 
 @interface HerePlaceTableViewController (){
     NSArray * placesArray;
@@ -276,6 +276,14 @@
     NSLog(@"se ejecuta cuando se suelta con el dedo el refresh");
     
     [self getPlacesFromParse];
+}
+- (IBAction)goMapButton:(UIBarButtonItem *)sender {
+    
+    // push para continuar
+    HereMapViewController *ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hereMapViewController"];
+    ViewController.arrayPlaces = placesArray;
+    
+    [self.navigationController pushViewController:ViewController animated:YES];
 }
 
 
