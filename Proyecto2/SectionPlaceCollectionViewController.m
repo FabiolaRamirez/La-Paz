@@ -68,12 +68,12 @@
     //config mi cell
     UIImageView * fotoImageView = (UIImageView *)[cell viewWithTag:1];
     UILabel * nombreLabel = (UILabel *)[cell viewWithTag:2];
-    
+    UILabel * nameCategoriesLabel = (UILabel *)[cell viewWithTag:3];
     
     PFObject *sectionPlace = [itemArray objectAtIndex:indexPath.row];
     
     nombreLabel.text = sectionPlace[@"name"];
-    
+    nameCategoriesLabel.text = sectionPlace[@"subCategories"];
     //para obtener imagen
    PFFile *imageFile=[sectionPlace objectForKey:@"imageFile"];
     
