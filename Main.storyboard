@@ -26,7 +26,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Aquí" id="AWM-oO-4zu">
                         <barButtonItem key="backBarButtonItem" title=" " id="tDK-5O-8V0"/>
-                        <barButtonItem key="leftBarButtonItem" image="lista" id="KHk-0E-LWT">
+                        <barButtonItem key="leftBarButtonItem" title="Cerca" id="KHk-0E-LWT">
                             <inset key="imageInsets" minX="1" minY="1" maxX="1" maxY="1"/>
                             <connections>
                                 <action selector="listaSuperiorButton:" destination="CZ4-MO-1fc" id="TCe-xQ-bzp"/>
@@ -107,7 +107,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Aquí" id="InB-do-4OQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="YXT-ZP-dx6"/>
-                        <barButtonItem key="rightBarButtonItem" image="place" id="bkT-9r-4n0">
+                        <barButtonItem key="rightBarButtonItem" image="mapa" id="bkT-9r-4n0">
                             <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                             <connections>
                                 <action selector="goMapButton:" destination="ugy-AU-EgC" id="9sF-86-yai"/>
@@ -769,18 +769,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="4aP-o7-sTI">
                         <barButtonItem key="backBarButtonItem" title=" " id="TmA-Mt-38G"/>
-                        <barButtonItem key="rightBarButtonItem" image="place" id="fMu-Iv-myT">
-                            <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                            <connections>
-                                <action selector="mapsButton:" destination="lMm-VR-S6W" id="pwL-wR-och"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqe-Xb-lNp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3512" y="493"/>
+            <point key="canvasLocation" x="3890" y="507"/>
         </scene>
         <!--Place Main Table View Controller-->
         <scene sceneID="JXB-5G-4ZM">
@@ -1397,13 +1391,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="iLi-Iq-paH">
+                        <barButtonItem key="backBarButtonItem" title=" " id="M62-ir-DtX"/>
+                        <barButtonItem key="rightBarButtonItem" image="listalugares" id="wud-OH-Rp3">
+                            <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                            <connections>
+                                <action selector="mapsButton:" destination="BqF-oZ-f1l" id="dbb-IO-8zL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="N6s-27-EqB" id="SAj-vd-8Ei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdI-tj-iFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3860" y="483"/>
+            <point key="canvasLocation" x="3528" y="504"/>
         </scene>
         <!--Information Place2 Table View Controller-->
         <scene sceneID="ByO-4r-BKU">
@@ -1509,7 +1513,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mc0-nK-E77">
-                            <size key="itemSize" width="149" height="184"/>
+                            <size key="itemSize" width="149" height="206"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1519,23 +1523,23 @@
                                 <rect key="frame" x="0.0" y="64" width="154" height="148"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="149" height="184"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="149" height="206"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaJ-dC-Tgf">
-                                            <rect key="frame" x="14" y="83" width="121" height="50"/>
+                                            <rect key="frame" x="14" y="93" width="121" height="50"/>
                                             <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCM-Hh-qw8">
-                                            <rect key="frame" x="8" y="122" width="141" height="54"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCM-Hh-qw8">
+                                            <rect key="frame" x="5" y="126" width="141" height="77"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXT-Iq-uhf">
-                                            <rect key="frame" x="44" y="26" width="60" height="60"/>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2y-XU-2Ff">
+                                            <rect key="frame" x="44" y="36" width="60" height="60"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1605,8 +1609,9 @@
         <image name="configurar" width="32" height="32"/>
         <image name="flag-4" width="21" height="21"/>
         <image name="friends" width="32" height="32"/>
-        <image name="lista" width="20" height="20"/>
+        <image name="listalugares" width="40" height="40"/>
         <image name="logo" width="1024" height="1024"/>
+        <image name="mapa" width="40" height="40"/>
         <image name="medalla" width="40" height="40"/>
         <image name="perfil" width="32" height="32"/>
         <image name="place" width="32" height="32"/>

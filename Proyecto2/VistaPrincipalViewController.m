@@ -39,7 +39,7 @@
             CLLocationCoordinate2D Localizacion;
             for (PFObject *object in objects)
             {
-                PFGeoPoint *geoPoint = (PFGeoPoint *)[object objectForKey:@"coordinate"];
+                PFGeoPoint* geoPoint = (PFGeoPoint *)[object objectForKey:@"coordinate"];
                 
                 // asi se saca el titulo y la desc, igual que que el geopoint, osea igual que en todos los quetys que ya hicimos antes en las otras pantallas
                 NSString *nombre = (NSString *)[object objectForKey:@"name"];
@@ -130,4 +130,5 @@
     [self.navigationController pushViewController:tableViewController animated:YES];
 
 }
+
 @end

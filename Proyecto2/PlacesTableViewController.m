@@ -255,10 +255,6 @@
     [self getPlacesFromParse];
 }
 
-- (IBAction)mapsButton:(UIBarButtonItem *)sender {
-    MapDetailPlaceViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
-    viewController.categoriaObject = self.categoriaObject;
-    [self.navigationController pushViewController:viewController animated:YES];
-}
+
 
 @end

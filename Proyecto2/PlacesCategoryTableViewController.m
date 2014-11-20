@@ -137,8 +137,8 @@
     PFObject *categoria = [categorias objectAtIndex:indexPath.row];
     
     // push para continuar
-    PlacesTableViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placesTableViewController"];
-    tableViewController.categoriaObject = categoria;
+    MapDetailPlaceViewController *tableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDetailPlaceViewController"];
+    tableViewController.Object = categoria;
     
     [self.navigationController pushViewController:tableViewController animated:YES];
     // modal es para salir de contexto

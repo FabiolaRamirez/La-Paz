@@ -7,6 +7,7 @@
 //
 
 #import "MapDetailPlaceViewController.h"
+#import "PlacesTableViewController.h"
 
 @interface MapDetailPlaceViewController ()
 {
@@ -29,7 +30,7 @@
     
     NSMutableArray * VectorAnotaciones=[[NSMutableArray alloc] init];
     
-    NSString *dodex = self.categoriaObject[@"code"];
+    NSString *dodex = self.Object[@"code"];
     NSLog(@"code!!!!!!!!!!!!!!!!!%@",dodex);
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
     [query whereKey:@"code" equalTo:dodex];
@@ -80,5 +81,10 @@
     
 }
 
+- (IBAction)mapsButton:(UIBarButtonItem *)sender {
+    PlacesTableViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"placesTableViewController"];
+    viewController.categoriaObject = self.Object;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 @end
